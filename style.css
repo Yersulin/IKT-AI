@@ -608,13 +608,17 @@ footer {
   background: var(--surface);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  overflow: hidden;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
 }
 .hero-video {
   width: 100%;
+  max-width: 960px;
   max-height: 520px;
   object-fit: cover;
   display: block;
+  border-radius: 12px;
 }
 
 /* ── HEADER CONTROLS (lang + music) ─────────────────────────── */

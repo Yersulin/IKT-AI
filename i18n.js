@@ -10,7 +10,7 @@ const T = {
     'nav.4': 'Контакты',
 
     /* ── FOOTER ── */
-    'footer': '<strong>Автор:</strong> Саттакулов Ислам Шайх-Хасанулы &nbsp;·&nbsp; <strong>Дисциплина:</strong> ИКТ — Информационно-коммуникационные технологии<br><strong>Учебное заведение:</strong> Университет Нархоз &nbsp;·&nbsp; <strong>Программа:</strong> Школа цифровых технологий &nbsp;·&nbsp; <strong>© 2026</strong>',
+    'footer': '<strong>Авторы:</strong> Саттаркулов И. &nbsp;·&nbsp; Мейрманбай А. &nbsp;·&nbsp; <strong>Дисциплина:</strong> ИКТ — Информационно-коммуникационные технологии<br><strong>Учебное заведение:</strong> Университет Нархоз &nbsp;·&nbsp; <strong>Специальность:</strong> Халықаралық Қатынастар &nbsp;·&nbsp; <strong>© 2026</strong>',
     'footer.links.0': 'Главная',
     'footer.links.1': 'Аналитика',
     'footer.links.2': 'AI-инструменты',
@@ -163,6 +163,8 @@ const T = {
     'ct.link.1': '🤖 AI-инструменты',
     'ct.link.2': 'ℹ️ О проекте',
     'ct.share': 'Поделиться проектом',
+    'ct.author.hdr': 'Авторы проекта',
+    'ct.spec.lbl': '📚 Специальность: Халықаралық Қатынастар',
   },
   kz: {
     /* ── NAV ── */
@@ -173,7 +175,7 @@ const T = {
     'nav.4': 'Байланыс',
 
     /* ── FOOTER ── */
-    'footer': '<strong>Автор:</strong> Саттакулов Ислам Шайх-Хасанулы &nbsp;·&nbsp; <strong>Пән:</strong> АКТ — Ақпараттық-коммуникациялық технологиялар<br><strong>Оқу орны:</strong> Нархоз Университеті &nbsp;·&nbsp; <strong>Бағдарлама:</strong> Цифрлық технологиялар мектебі &nbsp;·&nbsp; <strong>© 2026</strong>',
+    'footer': '<strong>Авторлар:</strong> Саттаркулов И. &nbsp;·&nbsp; Мейрманбай А. &nbsp;·&nbsp; <strong>Пән:</strong> АКТ — Ақпараттық-коммуникациялық технологиялар<br><strong>Оқу орны:</strong> Нархоз Университеті &nbsp;·&nbsp; <strong>Мамандық:</strong> Халықаралық Қатынастар &nbsp;·&nbsp; <strong>© 2026</strong>',
     'footer.links.0': 'Басты бет',
     'footer.links.1': 'Аналитика',
     'footer.links.2': 'AI-құралдар',
@@ -326,6 +328,8 @@ const T = {
     'ct.link.1': '🤖 AI-құралдар',
     'ct.link.2': 'ℹ️ Жоба туралы',
     'ct.share': 'Жобамен бөлісу',
+    'ct.author.hdr': 'Жоба авторлары',
+    'ct.spec.lbl': '📚 Мамандық: Халықаралық Қатынастар',
   },
 };
 
@@ -364,7 +368,9 @@ const SELECTORS = {
     { sel: '.section-full h3', each: ['home.step.title.0','home.step.title.1','home.step.title.2'], type: 'text' },
     { sel: '.section-full p',  each: ['home.step.desc.0','home.step.desc.1','home.step.desc.2'],   type: 'text' },
     /* CTA section */
-    { sel: '#cta-desc', key: 'home.cta.desc', type: 'text' },
+    { sel: '#cta-desc',  key: 'home.cta.desc', type: 'text' },
+    { sel: '#cta-btn1',  key: 'home.cta.btn1', type: 'text' },
+    { sel: '#cta-btn2',  key: 'home.cta.btn2', type: 'text' },
   ],
 
   'analytics.html': [
@@ -389,28 +395,52 @@ const SELECTORS = {
   ],
 
   'ai-tools.html': [
-    { sel: '.section-label',                       key: 'ai.label',       type: 'text' },
-    { sel: 'h1',                                   key: 'ai.title',       type: 'html' },
-    { sel: 'main > div > p',                       key: 'ai.subtitle',    type: 'text' },
+    { sel: '.section-label',    key: 'ai.label',       type: 'text' },
+    { sel: 'h1',                key: 'ai.title',       type: 'html' },
+    { sel: 'main > div > p',    key: 'ai.subtitle',    type: 'text' },
+    { sel: '#ai-bot-sub',       key: 'ai.bot.sub',     type: 'text' },
     { sel: '.suggestion', each: ['ai.sug.0','ai.sug.1','ai.sug.2','ai.sug.3'], type: 'text' },
-    { sel: '.chat-input',                          key: 'ai.chat.ph',     type: 'ph' },
+    { sel: '.chat-input',       key: 'ai.chat.ph',     type: 'ph' },
+    { sel: '#ai-from-lbl',      key: 'ai.route.from',  type: 'text' },
+    { sel: '#ai-to-lbl',        key: 'ai.route.to',    type: 'text' },
+    { sel: '#ai-mode-lbl',      key: 'ai.route.mode',  type: 'text' },
+    { sel: '#ai-route-btn',     key: 'ai.route.btn',   type: 'text' },
+    { sel: '#ai-pred-title',    key: 'ai.pred.title',  type: 'text' },
+    { sel: '#ai-pred-sub',      key: 'ai.pred.sub',    type: 'text' },
+    { sel: '#ai-pred-btn',      key: 'ai.pred.btn',    type: 'text' },
+    { sel: '#ai-cap-label',     key: 'ai.cap.label',   type: 'text' },
+    { sel: '#ai-cap-title',     key: 'ai.cap.title',   type: 'html' },
     { sel: '.feature-title', each: ['ai.c.title.0','ai.c.title.1','ai.c.title.2','ai.c.title.3','ai.c.title.4','ai.c.title.5'], type: 'text' },
     { sel: '.feature-desc',  each: ['ai.c.desc.0','ai.c.desc.1','ai.c.desc.2','ai.c.desc.3','ai.c.desc.4','ai.c.desc.5'],  type: 'text' },
   ],
 
   'about.html': [
-    { sel: '.section-label',  key: 'ab.label',  type: 'text' },
-    { sel: 'h1',              key: 'ab.title',  type: 'html' },
+    { sel: '.section-label',   key: 'ab.label',        type: 'text' },
+    { sel: 'h1',               key: 'ab.title',        type: 'html' },
+    { sel: 'main > div > p',   key: 'ab.subtitle',     type: 'html' },
+    { sel: '#ab-goal-title',   key: 'ab.goal.title',   type: 'text' },
+    { sel: '#ab-tasks-title',  key: 'ab.tasks.title',  type: 'text' },
+    { sel: '#ab-method-title', key: 'ab.method.title', type: 'text' },
+    { sel: '#ab-tech-title',   key: 'ab.tech.title',   type: 'text' },
+    { sel: '#ab-ai-title',     key: 'ab.ai.title',     type: 'text' },
+    { sel: '#ab-ai-sub',       key: 'ab.ai.sub',       type: 'text' },
+    { sel: '#ab-stages-title', key: 'ab.stages.title', type: 'text' },
   ],
 
   'contact.html': [
-    { sel: '.section-label',       key: 'ct.label',      type: 'text' },
-    { sel: 'h1',                   key: 'ct.title',      type: 'html' },
-    { sel: 'main > div > p',       key: 'ct.subtitle',   type: 'text' },
-    { sel: '.form-label',   each: ['ct.fn','ct.ln','ct.email','ct.subject','ct.msg'], type: 'text' },
-    { sel: '#submit-btn',          key: 'ct.submit',     type: 'text' },
+    { sel: '.section-label',  key: 'ct.label',      type: 'text' },
+    { sel: 'h1',              key: 'ct.title',      type: 'html' },
+    { sel: 'main > div > p',  key: 'ct.subtitle',   type: 'text' },
+    { sel: '.form-label', each: ['ct.fn','ct.ln','ct.email','ct.subject','ct.msg'], type: 'text' },
+    { sel: '#submit-btn',     key: 'ct.submit',     type: 'text' },
     { sel: '.info-content p', each: ['ct.about.desc', 'ct.ai.desc'], type: 'text' },
-    { sel: '.info-card .info-content h4:first-child', idx: 0, key: 'ct.about.desc', type: 'text' },
+    { sel: '#ct-author-hdr',  key: 'ct.author.hdr', type: 'text' },
+    { sel: '#ct-spec-lbl',    key: 'ct.spec.lbl',   type: 'text' },
+    { sel: '#ct-links-hdr',   key: 'ct.links.title',type: 'text' },
+    { sel: '#ct-share-txt',   key: 'ct.share',      type: 'text' },
+    { sel: '#ct-ok-title',    key: 'ct.ok.title',   type: 'text' },
+    { sel: '#ct-ok-desc',     key: 'ct.ok.desc',    type: 'text' },
+    { sel: '#ct-ok-back',     key: 'ct.ok.back',    type: 'text' },
   ],
 };
 

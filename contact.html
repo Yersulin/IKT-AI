@@ -85,9 +85,9 @@
 
         <div id="form-success" style="display:none;text-align:center;padding:2rem;">
           <div style="font-size:3rem;margin-bottom:1rem;">✅</div>
-          <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:600;margin-bottom:0.5rem;">Сообщение отправлено!</h3>
-          <p style="color:var(--text-2);font-size:0.9rem;">Спасибо за обратную связь. Ответим в ближайшее время.</p>
-          <button onclick="resetForm()" class="btn btn-outline" style="margin-top:1.25rem;">← Отправить ещё</button>
+          <h3 id="ct-ok-title" style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:600;margin-bottom:0.5rem;">Сообщение отправлено!</h3>
+          <p id="ct-ok-desc" style="color:var(--text-2);font-size:0.9rem;">Спасибо за обратную связь. Ответим в ближайшее время.</p>
+          <button id="ct-ok-back" onclick="resetForm()" class="btn btn-outline" style="margin-top:1.25rem;">← Отправить ещё</button>
         </div>
       </div>
 
@@ -97,12 +97,12 @@
         <!-- Author card -->
         <div class="card" style="text-align:center;background:linear-gradient(135deg,rgba(0,113,227,0.05),rgba(175,82,222,0.05));">
           <div style="width:72px;height:72px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1rem;box-shadow:var(--shadow-blue);">👨‍💻</div>
-          <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:0.25rem;">Автор проекта</h3>
-          <div style="font-size:1rem;font-weight:600;color:var(--blue);margin-bottom:0.5rem;">Саттакулов Ислам Шайх-Хасанулы</div>
+          <h3 id="ct-author-hdr" style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:0.25rem;">Авторы проекта</h3>
+          <div style="font-size:1rem;font-weight:600;color:var(--blue);margin-bottom:0.5rem;">Саттаркулов И. &nbsp;·&nbsp; Мейрманбай А.</div>
           <div style="height:1px;background:var(--border);margin:1rem 0;"></div>
           <div style="font-size:0.82rem;color:var(--text-2);line-height:1.8;">
             <div>🎓 Университет Нархоз</div>
-            <div>📚 Школа цифровых технологий</div>
+            <div id="ct-spec-lbl">📚 Специальность: Халықаралық Қатынастар</div>
             <div>📖 Дисциплина: ИКТ · 1 курс</div>
             <div>📅 2025–2026 учебный год</div>
           </div>
@@ -134,7 +134,7 @@
 
         <!-- Quick links -->
         <div class="card">
-          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.9rem;margin-bottom:1rem;">🔗 Быстрые ссылки</div>
+          <div id="ct-links-hdr" style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.9rem;margin-bottom:1rem;">🔗 Быстрые ссылки</div>
           <div style="display:flex;flex-direction:column;gap:0.5rem;">
             <a href="analytics.html" class="btn btn-outline btn-sm" style="justify-content:center;">📊 Открыть аналитику</a>
             <a href="ai-tools.html" class="btn btn-outline btn-sm" style="justify-content:center;">🤖 AI-инструменты</a>
@@ -147,7 +147,7 @@
 
     <!-- SOCIAL / BOTTOM ROW -->
     <div style="text-align:center;margin-top:3rem;padding:2rem;background:var(--surface);border:1px solid var(--border);border-radius:16px;">
-      <div style="font-size:0.9rem;color:var(--text-2);margin-bottom:1rem;">Поделиться проектом</div>
+      <div id="ct-share-txt" style="font-size:0.9rem;color:var(--text-2);margin-bottom:1rem;">Поделиться проектом</div>
       <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
         <a href="https://github.com/Yersulin/IKT-AI" target="_blank" class="btn btn-outline btn-sm">🐙 GitHub</a>
         <a href="mailto:ersulincom@gmail.com" class="btn btn-outline btn-sm">📧 Email</a>
@@ -172,11 +172,10 @@
     </div>
     <hr class="footer-hr">
     <div class="footer-info">
-      <strong>Автор:</strong> Саттакулов Ислам Шайх-Хасанулы &nbsp;·&nbsp;
+      <strong>Авторы:</strong> Саттаркулов И. &nbsp;·&nbsp; Мейрманбай А. &nbsp;·&nbsp;
       <strong>Дисциплина:</strong> ИКТ — Информационно-коммуникационные технологии<br>
       <strong>Учебное заведение:</strong> Университет Нархоз &nbsp;·&nbsp;
-      <strong>Программа:</strong> Школа цифровых технологий &nbsp;·&nbsp;
-      <strong>© 2026</strong>
+      <strong>Специальность:</strong> Халықаралық Қатынастар &nbsp;·&nbsp;<strong>© 2026</strong>
     </div>
   </div>
 </footer>
