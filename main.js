@@ -113,8 +113,8 @@ function initNetworkCanvas() {
           ctx.beginPath();
           ctx.moveTo(nodes[i].x, nodes[i].y);
           ctx.lineTo(nodes[j].x, nodes[j].y);
-          const a = (1 - d / DIST) * 0.18;
-          ctx.strokeStyle = `rgba(0,113,227,${a})`;
+          const a = (1 - d / DIST) * 0.28;
+          ctx.strokeStyle = `rgba(41,151,255,${a})`;
           ctx.lineWidth = 1;
           ctx.stroke();
         }
@@ -124,7 +124,7 @@ function initNetworkCanvas() {
     nodes.forEach(n => {
       ctx.beginPath();
       ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(0,113,227,0.35)';
+      ctx.fillStyle = 'rgba(41,151,255,0.5)';
       ctx.fill();
 
       n.x += n.vx; n.y += n.vy;

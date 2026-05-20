@@ -230,7 +230,7 @@
 <script src="i18n.js"></script>
 <script>
 /* ── Chart defaults ──────────────────────────────────────── */
-Chart.defaults.color = '#86868b';
+Chart.defaults.color = '#6e6e73';
 Chart.defaults.font.family = "'Inter', sans-serif";
 Chart.defaults.font.size = 12;
 
@@ -265,8 +265,8 @@ new Chart(ctxOTD, {
     responsive: true, maintainAspectRatio: false,
     plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.y}%` } } },
     scales: {
-      x: { grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { color: '#86868b' } },
-      y: { min: 90, max: 99, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { color: '#4a6080', callback: v => v + '%' } }
+      x: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { color: '#6e6e73' } },
+      y: { min: 90, max: 99, grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { color: '#6e6e73', callback: v => v + '%' } }
     }
   }
 });
@@ -291,8 +291,8 @@ new Chart(document.getElementById('chart-regions').getContext('2d'), {
     responsive: true, maintainAspectRatio: false,
     plugins: { legend: { display: false } },
     scales: {
-      x: { grid: { display: false }, ticks: { color: '#86868b' } },
-      y: { grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { color: '#4a6080', callback: v => '$' + v + 'M' } }
+      x: { grid: { display: false }, ticks: { color: '#6e6e73' } },
+      y: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { color: '#6e6e73', callback: v => '$' + v + 'M' } }
     }
   }
 });
@@ -358,8 +358,8 @@ new Chart(document.getElementById('chart-leadtime').getContext('2d'), {
     responsive: true, maintainAspectRatio: false,
     plugins: { legend: { position: 'top', labels: { boxWidth: 12, padding: 16 } } },
     scales: {
-      x: { grid: { display: false }, ticks: { color: '#86868b' } },
-      y: { grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { color: '#4a6080', callback: v => v + 'д' } }
+      x: { grid: { display: false }, ticks: { color: '#6e6e73' } },
+      y: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { color: '#6e6e73', callback: v => v + 'д' } }
     }
   }
 });
