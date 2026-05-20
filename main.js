@@ -211,32 +211,37 @@ function getLocalReply(q) {
 
 /* ── Music Player ───────────────────────────────────────────── */
 function initMusicPlayer() {
-  const player  = document.getElementById('music-player');
-  const btn     = document.getElementById('music-btn');
-  const audio   = document.getElementById('bg-audio');
-  if (!player || !btn || !audio) return;
+  const audio = document.getElementById('bg-audio');
+  if (!audio) return;
 
-  audio.volume = 0.4;
+  audio.volume = 0.35;
 
-  const shouldPlay = localStorage.getItem('musicPlaying') === '1';
-  if (shouldPlay) {
-    audio.play().then(() => {
-      player.classList.add('playing');
-      btn.textContent = '⏸';
-    }).catch(() => {});
+  function getBtn() { return document.getElementById('music-header-btn'); }
+
+  function setPlaying(on) {
+    const btn = getBtn();
+    if (btn) {
+      btn.innerHTML = on ? '⏸' : '♪';
+      btn.classList.toggle('playing', on);
+    }
+    localStorage.setItem('musicPlaying', on ? '1' : '0');
   }
 
-  btn.addEventListener('click', () => {
-    if (audio.paused) {
-      audio.play();
-      player.classList.add('playing');
-      btn.textContent = '⏸';
-      localStorage.setItem('musicPlaying', '1');
-    } else {
-      audio.pause();
-      player.classList.remove('playing');
-      btn.textContent = '▶';
-      localStorage.setItem('musicPlaying', '0');
+  // Default ON — skip only if user explicitly paused
+  if (localStorage.getItem('musicPlaying') !== '0') {
+    audio.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
+  } else {
+    setPlaying(false);
+  }
+
+  document.addEventListener('click', (e) => {
+    if (e.target.id === 'music-header-btn') {
+      if (audio.paused) {
+        audio.play().then(() => setPlaying(true));
+      } else {
+        audio.pause();
+        setPlaying(false);
+      }
     }
   });
 }

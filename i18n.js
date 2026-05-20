@@ -472,12 +472,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Inject lang toggle into header
   const header = document.querySelector('header');
   if (header) {
-    const toggle = document.createElement('div');
-    toggle.className = 'lang-toggle';
-    toggle.innerHTML = `
-      <button class="lang-btn${window.__lang === 'ru' ? ' active' : ''}" data-l="ru" onclick="setLang('ru')">РУ</button>
-      <button class="lang-btn${window.__lang === 'kz' ? ' active' : ''}" data-l="kz" onclick="setLang('kz')">ҚЗ</button>`;
-    header.appendChild(toggle);
+    const controls = document.createElement('div');
+    controls.className = 'header-controls';
+    controls.innerHTML = `
+      <div class="lang-toggle">
+        <button class="lang-btn${window.__lang === 'ru' ? ' active' : ''}" data-l="ru" onclick="setLang('ru')">РУ</button>
+        <button class="lang-btn${window.__lang === 'kz' ? ' active' : ''}" data-l="kz" onclick="setLang('kz')">ҚЗ</button>
+      </div>
+      <button id="music-header-btn" class="music-header-btn" title="Музыка">♪</button>`;
+    header.appendChild(controls);
   }
 
   // Render stages on page load (about.html)
