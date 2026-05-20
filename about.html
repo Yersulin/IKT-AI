@@ -124,10 +124,10 @@
     <div class="grid-2" style="margin-bottom:2rem;">
       <div class="card">
         <h3 id="ab-goal-title" style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;margin-bottom:1rem;">🎯 Цель проекта</h3>
-        <p style="font-size:0.9rem;color:var(--text-2);line-height:1.75;margin-bottom:1rem;">
+        <p id="ab-goal-p1" style="font-size:0.9rem;color:var(--text-2);line-height:1.75;margin-bottom:1rem;">
           Разработка интерактивной веб-платформы для <strong style="color:var(--text);">визуализации и анализа данных логистических цепочек</strong> с применением технологий AI.
         </p>
-        <p style="font-size:0.9rem;color:var(--text-2);line-height:1.75;">
+        <p id="ab-goal-p2" style="font-size:0.9rem;color:var(--text-2);line-height:1.75;">
           Платформа демонстрирует применение ИКТ для решения реальных бизнес-задач: мониторинга KPI, оптимизации маршрутов и прогнозирования показателей supply chain.
         </p>
       </div>
@@ -135,22 +135,22 @@
         <h3 id="ab-tasks-title" style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;margin-bottom:1rem;">📋 Задачи проекта</h3>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:0.65rem;">
           <li style="display:flex;gap:0.5rem;font-size:0.875rem;color:var(--text-2);">
-            <span style="color:var(--green);flex-shrink:0;">✓</span>Проектирование структуры и UI многостраничного сайта
+            <span style="color:var(--green);flex-shrink:0;">✓</span><span class="ab-task-txt">Проектирование структуры и UI многостраничного сайта</span>
           </li>
           <li style="display:flex;gap:0.5rem;font-size:0.875rem;color:var(--text-2);">
-            <span style="color:var(--green);flex-shrink:0;">✓</span>Разработка интерактивных дашбордов с Chart.js
+            <span style="color:var(--green);flex-shrink:0;">✓</span><span class="ab-task-txt">Разработка интерактивных дашбордов с Chart.js</span>
           </li>
           <li style="display:flex;gap:0.5rem;font-size:0.875rem;color:var(--text-2);">
-            <span style="color:var(--green);flex-shrink:0;">✓</span>Интеграция AI-ассистента (Pollinations AI API)
+            <span style="color:var(--green);flex-shrink:0;">✓</span><span class="ab-task-txt">Интеграция AI-ассистента (Pollinations AI API)</span>
           </li>
           <li style="display:flex;gap:0.5rem;font-size:0.875rem;color:var(--text-2);">
-            <span style="color:var(--green);flex-shrink:0;">✓</span>AI-анализ логистических данных и генерация инсайтов
+            <span style="color:var(--green);flex-shrink:0;">✓</span><span class="ab-task-txt">AI-анализ логистических данных и генерация инсайтов</span>
           </li>
           <li style="display:flex;gap:0.5rem;font-size:0.875rem;color:var(--text-2);">
-            <span style="color:var(--green);flex-shrink:0;">✓</span>Создание инструмента оптимизации маршрутов
+            <span style="color:var(--green);flex-shrink:0;">✓</span><span class="ab-task-txt">Создание инструмента оптимизации маршрутов</span>
           </li>
           <li style="display:flex;gap:0.5rem;font-size:0.875rem;color:var(--text-2);">
-            <span style="color:var(--green);flex-shrink:0;">✓</span>Адаптивный дизайн и анимированные компоненты
+            <span style="color:var(--green);flex-shrink:0;">✓</span><span class="ab-task-txt">Адаптивный дизайн и анимированные компоненты</span>
           </li>
         </ul>
       </div>
@@ -163,7 +163,7 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;">
 
         <div style="background:var(--blue-dim);border:1px solid var(--blue-mid);border-radius:12px;padding:1.25rem;">
-          <div style="font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:0.6rem;">📊 Ключевые KPI</div>
+          <div id="ab-kpi-title" style="font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:0.6rem;">📊 Ключевые KPI</div>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:0.4rem;font-size:0.82rem;color:var(--text-2);">
             <li>• <strong style="color:var(--blue);">OTD</strong> — On-Time Delivery (доставка в срок)</li>
             <li>• <strong style="color:var(--blue);">OTIF</strong> — On-Time In Full (полностью вовремя)</li>
@@ -174,7 +174,7 @@
         </div>
 
         <div style="background:var(--purple-dim);border:1px solid rgba(175,82,222,0.15);border-radius:12px;padding:1.25rem;">
-          <div style="font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:0.6rem;">🔬 Методы анализа</div>
+          <div id="ab-methods-title" style="font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:0.6rem;">🔬 Методы анализа</div>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:0.4rem;font-size:0.82rem;color:var(--text-2);">
             <li>• ABC/XYZ-анализ ассортимента</li>
             <li>• Временны́е ряды (ARIMA, Moving Average)</li>
@@ -185,7 +185,7 @@
         </div>
 
         <div style="background:var(--green-dim);border:1px solid rgba(52,199,89,0.15);border-radius:12px;padding:1.25rem;">
-          <div style="font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:0.6rem;">🌐 Источники данных</div>
+          <div id="ab-sources-title" style="font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:0.6rem;">🌐 Источники данных</div>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:0.4rem;font-size:0.82rem;color:var(--text-2);">
             <li>• Транспортная статистика QazStat</li>
             <li>• Отчёты ООО «КТЖ Экспресс» 2024</li>
@@ -226,17 +226,17 @@
         </div>
       </div>
       <div style="font-size:0.9rem;color:var(--text-2);line-height:1.8;">
-        <p style="margin-bottom:0.85rem;">
+        <p id="ab-ai-p1" style="margin-bottom:0.85rem;">
           Глобальные логистические цепочки ежегодно обрабатывают товаров на сумму более <strong style="color:var(--text);">$19 триллионов</strong>.
           При этом неэффективность в управлении supply chain обходится компаниям в 5–20% выручки.
           Цифровизация и применение AI в логистике становятся ключевыми факторами конкурентоспособности.
         </p>
-        <p style="margin-bottom:0.85rem;">
+        <p id="ab-ai-p2" style="margin-bottom:0.85rem;">
           По данным McKinsey (2024), компании, внедрившие AI-аналитику в логистику, сократили затраты на <strong style="color:var(--green);">15–25%</strong>,
           улучшили OTD на <strong style="color:var(--green);">5–8%</strong> и снизили складские запасы на <strong style="color:var(--green);">20–30%</strong>.
           Для Казахстана — как транзитного хаба между Европой и Азией — тема особенно актуальна.
         </p>
-        <p>
+        <p id="ab-ai-p3">
           Логистический индекс Казахстана (LPI World Bank 2023) составляет <strong style="color:var(--blue);">2.74/5.0</strong>,
           что указывает на значительный потенциал для цифрового улучшения. Данная платформа демонстрирует,
           как технологии ИКТ и AI могут трансформировать управление цепочками поставок.

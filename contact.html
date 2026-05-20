@@ -43,23 +43,23 @@
 
       <!-- FORM -->
       <div class="card">
-        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;margin-bottom:1.5rem;">✉️ Написать сообщение</h3>
+        <h3 id="ct-form-card-title" style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;margin-bottom:1.5rem;">✉️ Написать сообщение</h3>
 
         <form id="contact-form" onsubmit="submitForm(event)">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
             <div class="form-group">
               <label class="form-label">Имя *</label>
-              <input type="text" class="form-input" placeholder="Ваше имя" required>
+              <input id="ct-inp-fname" type="text" class="form-input" placeholder="Ваше имя" required>
             </div>
             <div class="form-group">
               <label class="form-label">Фамилия</label>
-              <input type="text" class="form-input" placeholder="Фамилия">
+              <input id="ct-inp-lname" type="text" class="form-input" placeholder="Фамилия">
             </div>
           </div>
 
           <div class="form-group">
             <label class="form-label">Email *</label>
-            <input type="email" class="form-input" placeholder="email@example.com" required>
+            <input id="ct-inp-email" type="email" class="form-input" placeholder="email@example.com" required>
           </div>
 
           <div class="form-group">
@@ -75,7 +75,7 @@
 
           <div class="form-group">
             <label class="form-label">Сообщение *</label>
-            <textarea class="form-input" rows="5" placeholder="Ваш вопрос или комментарий..." required></textarea>
+            <textarea id="ct-inp-msg" class="form-input" rows="5" placeholder="Ваш вопрос или комментарий..." required></textarea>
           </div>
 
           <button type="submit" class="btn btn-primary btn-full" id="submit-btn">
@@ -111,7 +111,7 @@
         <div class="info-card">
           <div class="info-icon">📚</div>
           <div class="info-content">
-            <h4>О проекте</h4>
+            <h4 id="ct-info-about-title">О проекте</h4>
             <p>Тема 16: Визуализация и анализ данных о логистических цепочках. Экзаменационный проект по дисциплине ИКТ.</p>
           </div>
         </div>
@@ -119,7 +119,7 @@
         <div class="info-card">
           <div class="info-icon">🤖</div>
           <div class="info-content">
-            <h4>AI-компоненты</h4>
+            <h4 id="ct-info-ai-title">AI-компоненты</h4>
             <p>LogiBot работает через Pollinations AI API — бесплатный, без авторизации. Все данные анализируются локально.</p>
           </div>
         </div>
@@ -127,7 +127,7 @@
         <div class="info-card">
           <div class="info-icon">🐙</div>
           <div class="info-content">
-            <h4>Исходный код</h4>
+            <h4 id="ct-info-code-title">Исходный код</h4>
             <p>Проект опубликован на GitHub: <a href="https://github.com/Yersulin/IKT-AI" target="_blank" style="color:var(--blue);text-decoration:none;">github.com/Yersulin/IKT-AI</a></p>
           </div>
         </div>
@@ -136,9 +136,9 @@
         <div class="card">
           <div id="ct-links-hdr" style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.9rem;margin-bottom:1rem;">🔗 Быстрые ссылки</div>
           <div style="display:flex;flex-direction:column;gap:0.5rem;">
-            <a href="analytics.html" class="btn btn-outline btn-sm" style="justify-content:center;">📊 Открыть аналитику</a>
-            <a href="ai-tools.html" class="btn btn-outline btn-sm" style="justify-content:center;">🤖 AI-инструменты</a>
-            <a href="about.html"    class="btn btn-outline btn-sm" style="justify-content:center;">ℹ️ О проекте</a>
+            <a id="ct-qlink-0" href="analytics.html" class="btn btn-outline btn-sm" style="justify-content:center;">📊 Открыть аналитику</a>
+            <a id="ct-qlink-1" href="ai-tools.html" class="btn btn-outline btn-sm" style="justify-content:center;">🤖 AI-инструменты</a>
+            <a id="ct-qlink-2" href="about.html"    class="btn btn-outline btn-sm" style="justify-content:center;">ℹ️ О проекте</a>
           </div>
         </div>
 

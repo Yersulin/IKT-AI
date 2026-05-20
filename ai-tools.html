@@ -61,12 +61,12 @@
             <div class="chat-avatar">🤖</div>
             <div>
               <div class="chat-name">LogiBot</div>
-              <div class="chat-status"><span class="chat-dot"></span> Онлайн</div>
+              <div class="chat-status"><span class="chat-dot"></span> <span id="ai-chat-online">Онлайн</span></div>
             </div>
           </div>
 
           <div class="chat-messages" id="chat-messages">
-            <div class="msg bot">
+            <div id="ai-chat-greeting" class="msg bot">
               👋 Привет! Я LogiBot — AI-ассистент по логистике и цепочкам поставок.<br><br>
               Я могу помочь с анализом KPI, оптимизацией маршрутов, управлением запасами и снижением затрат. Что вас интересует?
             </div>
@@ -248,34 +248,40 @@ function calcRouteUI() {
   const from = document.getElementById('route-from').value;
   const to   = document.getElementById('route-to').value;
   const mode = document.getElementById('route-mode').value;
+  const t = (typeof T !== 'undefined' && T[window.__lang]) ? T[window.__lang] : {};
 
-  if (from === to) { alert('Выберите разные города'); return; }
+  if (from === to) { alert(t['ai.route.same'] || 'Выберите разные города'); return; }
 
   const r = calcRoute(from, to, mode);
-  const modeLabels = { auto:'🚛 Автомобильный', rail:'🚂 Железнодорожный', air:'✈️ Авиационный', sea:'🚢 Морской' };
+  const modeLabels = {
+    auto: t['ai.mode.auto'] || '🚛 Автомобильный',
+    rail: t['ai.mode.rail'] || '🚂 Железнодорожный',
+    air:  t['ai.mode.air']  || '✈️ Авиационный',
+    sea:  t['ai.mode.sea']  || '🚢 Морской'
+  };
 
   document.getElementById('route-result-content').innerHTML = `
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
       <div style="background:var(--blue-dim);border:1px solid var(--blue-mid);border-radius:10px;padding:0.9rem;text-align:center;">
         <div style="font-size:1.5rem;font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--blue);">${r.dist.toLocaleString()}</div>
-        <div style="font-size:0.75rem;color:var(--text-3);">км расстояние</div>
+        <div style="font-size:0.75rem;color:var(--text-3);">${t['ai.res.km'] || 'км расстояние'}</div>
       </div>
       <div style="background:var(--green-dim);border:1px solid rgba(52,199,89,0.2);border-radius:10px;padding:0.9rem;text-align:center;">
         <div style="font-size:1.5rem;font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--green);">${r.time}</div>
-        <div style="font-size:0.75rem;color:var(--text-3);">часов в пути</div>
+        <div style="font-size:0.75rem;color:var(--text-3);">${t['ai.res.hrs'] || 'часов в пути'}</div>
       </div>
       <div style="background:var(--orange-dim);border:1px solid rgba(255,149,0,0.2);border-radius:10px;padding:0.9rem;text-align:center;">
         <div style="font-size:1.5rem;font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--orange);">$${Number(r.price).toLocaleString()}</div>
-        <div style="font-size:0.75rem;color:var(--text-3);">стоимость перевозки</div>
+        <div style="font-size:0.75rem;color:var(--text-3);">${t['ai.res.price'] || 'стоимость перевозки'}</div>
       </div>
       <div style="background:var(--red-dim);border:1px solid rgba(255,59,48,0.2);border-radius:10px;padding:0.9rem;text-align:center;">
         <div style="font-size:1.5rem;font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--red);">${r.co2}</div>
-        <div style="font-size:0.75rem;color:var(--text-3);">гр CO₂/т·км</div>
+        <div style="font-size:0.75rem;color:var(--text-3);">${t['ai.res.co2'] || 'гр CO₂/т·км'}</div>
       </div>
     </div>
     <div style="margin-top:0.9rem;font-size:0.82rem;color:var(--text-2);background:var(--surface-alt);border:1px solid var(--border);border-radius:8px;padding:0.75rem;">
       📍 <strong style="color:var(--text);">${from} → ${to}</strong> · ${modeLabels[mode]}<br>
-      💡 <span style="color:var(--text-3);">Рекомендация: при объёме > 20т и не срочной поставке — рассмотрите ж/д (экономия ~35%).</span>
+      💡 <span style="color:var(--text-3);">${t['ai.res.rec'] || 'Рекомендация: при объёме > 20т и не срочной поставке — рассмотрите ж/д (экономия ~35%).'}</span>
     </div>`;
   document.getElementById('route-result').style.display = 'block';
 }
@@ -283,19 +289,20 @@ function calcRouteUI() {
 /* Predictive Stats */
 function generatePrediction() {
   const btn = document.querySelector('#predict-content button');
-  if (btn) { btn.textContent = '⏳ Генерация...'; btn.disabled = true; }
+  if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
+  const t = (typeof T !== 'undefined' && T[window.__lang]) ? T[window.__lang] : {};
 
   setTimeout(() => {
     const metrics = [
-      { name:'OTD прогноз Q1 2026', val:'95.5%', trend:'▲', color:'var(--green)', bar:95.5 },
-      { name:'OTIF прогноз Q1 2026', val:'92.1%', trend:'▲', color:'var(--green)', bar:92.1 },
-      { name:'Lead Time, дней',      val:'3.9',   trend:'▼', color:'var(--cyan)',  bar:61 },
-      { name:'Fill Rate',            val:'98.2%', trend:'▲', color:'var(--green)', bar:98.2 },
-      { name:'Риск срыва поставок',  val:'6.3%',  trend:'▼', color:'var(--orange)', bar:6.3 },
+      { name: t['ai.pred.metric.0'] || 'OTD прогноз Q1 2026', val:'95.5%', trend:'▲', color:'var(--green)', bar:95.5 },
+      { name: t['ai.pred.metric.1'] || 'OTIF прогноз Q1 2026', val:'92.1%', trend:'▲', color:'var(--green)', bar:92.1 },
+      { name: t['ai.pred.metric.2'] || 'Lead Time, дней',      val:'3.9',   trend:'▼', color:'var(--cyan)',  bar:61 },
+      { name: t['ai.pred.metric.3'] || 'Fill Rate',            val:'98.2%', trend:'▲', color:'var(--green)', bar:98.2 },
+      { name: t['ai.pred.metric.4'] || 'Риск срыва поставок',  val:'6.3%',  trend:'▼', color:'var(--orange)', bar:6.3 },
     ];
 
     document.getElementById('predict-content').innerHTML = `
-      <div style="font-size:0.8rem;color:var(--blue);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:1rem;">Прогноз Q1 2026 · Confidence 84%</div>
+      <div style="font-size:0.8rem;color:var(--blue);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:1rem;">${t['ai.pred.hdr'] || 'Прогноз Q1 2026 · Confidence 84%'}</div>
       ${metrics.map(m => `
         <div class="progress-row">
           <div class="progress-meta">
@@ -307,7 +314,7 @@ function generatePrediction() {
           </div>
         </div>`).join('')}
       <div style="margin-top:1rem;font-size:0.78rem;color:var(--text-3);">
-        🤖 Прогноз построен на основе данных за 12 месяцев с помощью ARIMA + ML-ансамбля
+        ${t['ai.pred.note'] || '🤖 Прогноз построен на основе данных за 12 месяцев с помощью ARIMA + ML-ансамбля'}
       </div>`;
 
     animateProgressBars();
