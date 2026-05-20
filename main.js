@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   animateCounters();
   animateProgressBars();
   initBackToTop();
+  initMusicPlayer();
 });
 
 function setActiveNav() {
@@ -206,6 +207,38 @@ function getLocalReply(q) {
   if (q.includes('затрат') || q.includes('стоимост'))
     return 'Структура затрат: транспорт 40-60%, склад 20-30%, запасы 15-25%. Основная экономия — консолидация грузов и мультимодальные схемы доставки.';
   return 'Я помогаю с анализом логистических цепочек. Спросите об OTD/OTIF, оптимизации маршрутов, управлении запасами или затратах supply chain.';
+}
+
+/* ── Music Player ───────────────────────────────────────────── */
+function initMusicPlayer() {
+  const player  = document.getElementById('music-player');
+  const btn     = document.getElementById('music-btn');
+  const audio   = document.getElementById('bg-audio');
+  if (!player || !btn || !audio) return;
+
+  audio.volume = 0.4;
+
+  const shouldPlay = localStorage.getItem('musicPlaying') === '1';
+  if (shouldPlay) {
+    audio.play().then(() => {
+      player.classList.add('playing');
+      btn.textContent = '⏸';
+    }).catch(() => {});
+  }
+
+  btn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      player.classList.add('playing');
+      btn.textContent = '⏸';
+      localStorage.setItem('musicPlaying', '1');
+    } else {
+      audio.pause();
+      player.classList.remove('playing');
+      btn.textContent = '▶';
+      localStorage.setItem('musicPlaying', '0');
+    }
+  });
 }
 
 /* ── Route Optimizer ─────────────────────────────────────────── */
