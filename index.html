@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogiChain — Аналитика логистических цепочек</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="logo" href="index.html">
+    <div class="logo-icon">🔗</div>
+    <span class="logo-text">LogiChain</span>
+  </a>
+  <nav>
+    <ul>
+      <li><a href="index.html" class="active">Главная</a></li>
+      <li><a href="analytics.html">Аналитика</a></li>
+      <li><a href="ai-tools.html">AI-инструменты</a></li>
+      <li><a href="about.html">О проекте</a></li>
+      <li><a href="contact.html">Контакты</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <canvas id="network-canvas"></canvas>
+    <div class="hero-inner">
+      <div class="badge"><span class="badge-dot"></span> Тема 16 · ИКТ Проект 2026</div>
+      <h1 class="hero-title fade-up">
+        Визуализация и анализ<br>
+        <span class="grad-text">логистических цепочек</span>
+      </h1>
+      <p class="hero-subtitle fade-up delay-1">
+        Интерактивная аналитическая платформа для мониторинга, оптимизации
+        и прогнозирования данных глобальных цепочек поставок в реальном времени.
+      </p>
+      <div class="hero-btns fade-up delay-2">
+        <a href="analytics.html" class="btn btn-primary">📊 Открыть аналитику</a>
+        <a href="ai-tools.html" class="btn btn-outline">🤖 AI-инструменты</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Прокрутить</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-value">
+          <span data-target="94.7" data-suffix="%" data-dec="1">0%</span>
+        </div>
+        <div class="stat-label">OTD — доставка в срок</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-value">
+          <span data-target="1284" data-suffix="">0</span>
+        </div>
+        <div class="stat-label">Активных маршрутов</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-value">
+          <span data-target="32" data-suffix="">0</span>+
+        </div>
+        <div class="stat-label">Стран в цепочке</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-value">
+          $<span data-target="4.8" data-suffix="B" data-dec="1">0</span>
+        </div>
+        <div class="stat-label">Объём под управлением</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-label">Возможности платформы</div>
+      <h2 class="section-title">Полный цикл управления <span class="grad-text">supply chain</span></h2>
+      <p class="section-desc">От сбора данных до прогнозирования — всё в одном месте</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="card feature-card fade-up">
+        <div class="feature-icon">📡</div>
+        <div class="feature-title">Мониторинг в реальном времени</div>
+        <p class="feature-desc">Отслеживайте грузы, транспортные средства и статус заказов по всей цепочке поставок в режиме live с точностью до минуты.</p>
+      </div>
+
+      <div class="card feature-card fade-up delay-1">
+        <div class="feature-icon">📈</div>
+        <div class="feature-title">Визуализация данных</div>
+        <p class="feature-desc">Интерактивные дашборды с KPI, тепловые карты отклонений, сравнительный анализ маршрутов и временны́е ряды эффективности.</p>
+      </div>
+
+      <div class="card feature-card fade-up delay-2">
+        <div class="feature-icon">🤖</div>
+        <div class="feature-title">AI-оптимизация</div>
+        <p class="feature-desc">Алгоритмы машинного обучения для прогнозирования сроков, выявления узких мест и автоматической оптимизации маршрутов.</p>
+      </div>
+
+      <div class="card feature-card fade-up delay-1">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Риск-аналитика</div>
+        <p class="feature-desc">Система раннего предупреждения о сбоях: дефиците запасов, задержках поставок, перегрузке складских мощностей.</p>
+      </div>
+
+      <div class="card feature-card fade-up delay-2">
+        <div class="feature-icon">🌍</div>
+        <div class="feature-title">Глобальная сеть</div>
+        <p class="feature-desc">Карта поставщиков, дистрибьюторов и конечных точек доставки с расчётом оптимальных путей через транспортные узлы.</p>
+      </div>
+
+      <div class="card feature-card fade-up delay-3">
+        <div class="feature-icon">💰</div>
+        <div class="feature-title">Управление затратами</div>
+        <p class="feature-desc">Анализ TCO (Total Cost of Ownership), бенчмаркинг транспортных тарифов и выявление скрытых потерь в цепочке.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section-full" style="background: rgba(12,26,46,0.4); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="section" style="padding-top:0;padding-bottom:0;">
+      <div class="section-head">
+        <div class="section-label">Как это работает</div>
+        <h2 class="section-title">Три шага к <span class="grad-text">умной логистике</span></h2>
+      </div>
+      <div class="grid-3">
+        <div style="text-align:center; padding:1.5rem 1rem;">
+          <div style="width:70px;height:70px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 1.25rem;box-shadow:0 8px 30px rgba(0,200,255,0.3);">1</div>
+          <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;margin-bottom:0.5rem;">Сбор данных</h3>
+          <p style="font-size:0.875rem;color:var(--text-dim);line-height:1.65;">Интеграция с TMS, WMS, ERP-системами и IoT-сенсорами. Агрегация данных из множества источников в единый поток.</p>
+        </div>
+        <div style="text-align:center; padding:1.5rem 1rem;">
+          <div style="width:70px;height:70px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 1.25rem;box-shadow:0 8px 30px rgba(124,58,237,0.3);">2</div>
+          <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;margin-bottom:0.5rem;">AI-обработка</h3>
+          <p style="font-size:0.875rem;color:var(--text-dim);line-height:1.65;">Нейросети анализируют паттерны, выявляют аномалии, строят прогнозные модели спроса и оптимизируют маршруты.</p>
+        </div>
+        <div style="text-align:center; padding:1.5rem 1rem;">
+          <div style="width:70px;height:70px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 1.25rem;box-shadow:0 8px 30px rgba(16,185,129,0.3);">3</div>
+          <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;margin-bottom:0.5rem;">Инсайты и решения</h3>
+          <p style="font-size:0.875rem;color:var(--text-dim);line-height:1.65;">Визуальные дашборды, автоматические алерты и рекомендации позволяют менеджерам принимать решения быстрее на 3×.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="text-align:center;">
+    <div style="max-width:600px; margin:0 auto;">
+      <div class="section-label">Начать работу</div>
+      <h2 class="section-title">Готовы оптимизировать<br><span class="grad-text">вашу цепочку поставок?</span></h2>
+      <p style="color:var(--text-dim);margin-bottom:2rem;font-size:1rem;line-height:1.7;">Изучите аналитику, попробуйте AI-ассистент и инструмент оптимизации маршрутов прямо сейчас — без регистрации.</p>
+      <div class="hero-btns" style="position:static;transform:none;">
+        <a href="analytics.html" class="btn btn-primary">📊 Перейти к аналитике</a>
+        <a href="ai-tools.html" class="btn btn-outline">💬 Спросить LogiBot</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">🔗 LogiChain Analytics</div>
+    <div class="footer-links">
+      <a href="index.html">Главная</a>
+      <a href="analytics.html">Аналитика</a>
+      <a href="ai-tools.html">AI-инструменты</a>
+      <a href="about.html">О проекте</a>
+      <a href="contact.html">Контакты</a>
+    </div>
+    <hr class="footer-hr">
+    <div class="footer-info">
+      <strong>Автор:</strong> Ерсулин (заполните ФИО) &nbsp;·&nbsp;
+      <strong>Дисциплина:</strong> ИКТ — Информационно-коммуникационные технологии<br>
+      <strong>Учебное заведение:</strong> Университет Нархоз &nbsp;·&nbsp;
+      <strong>Программа:</strong> Школа цифровых технологий &nbsp;·&nbsp;
+      <strong>© 2026</strong>
+    </div>
+  </div>
+</footer>
+
+<button id="back-top" style="position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;border-radius:50%;background:var(--grad);border:none;color:white;font-size:1.1rem;cursor:pointer;z-index:999;opacity:0;pointer-events:none;transition:opacity 0.3s;box-shadow:0 4px 20px rgba(0,200,255,0.3);">↑</button>
+
+<script src="main.js"></script>
+<script>initNetworkCanvas();</script>
+</body>
+</html>

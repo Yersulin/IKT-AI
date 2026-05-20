@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Контакты — LogiChain</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✉️</text></svg>">
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html">
+    <div class="logo-icon">🔗</div>
+    <span class="logo-text">LogiChain</span>
+  </a>
+  <nav>
+    <ul>
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="analytics.html">Аналитика</a></li>
+      <li><a href="ai-tools.html">AI-инструменты</a></li>
+      <li><a href="about.html">О проекте</a></li>
+      <li><a href="contact.html" class="active">Контакты</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HEADER -->
+  <div style="padding:4rem 2.5rem 2rem;max-width:900px;margin:0 auto;text-align:center;">
+    <div class="section-label" style="margin-bottom:0.75rem;">Контакты</div>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,5vw,2.8rem);font-weight:700;margin-bottom:1rem;">
+      Связаться с <span class="grad-text">автором проекта</span>
+    </h1>
+    <p style="color:var(--text-dim);font-size:1rem;line-height:1.7;">
+      Проект выполнен в рамках курса ИКТ. По вопросам сотрудничества или дополнениям — форма ниже.
+    </p>
+  </div>
+
+  <section class="section" style="padding-top:1rem;padding-bottom:5rem;">
+    <div class="grid-2" style="align-items:start;gap:2rem;">
+
+      <!-- FORM -->
+      <div class="card">
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;margin-bottom:1.5rem;">✉️ Написать сообщение</h3>
+
+        <form id="contact-form" onsubmit="submitForm(event)">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div class="form-group">
+              <label class="form-label">Имя *</label>
+              <input type="text" class="form-input" placeholder="Ваше имя" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Фамилия</label>
+              <input type="text" class="form-input" placeholder="Фамилия">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email *</label>
+            <input type="email" class="form-input" placeholder="email@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Тема обращения</label>
+            <select class="form-input">
+              <option>Вопрос по проекту</option>
+              <option>Предложение по улучшению</option>
+              <option>Академическое сотрудничество</option>
+              <option>Логистика и supply chain</option>
+              <option>Другое</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Сообщение *</label>
+            <textarea class="form-input" rows="5" placeholder="Ваш вопрос или комментарий..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full" id="submit-btn">
+            📨 Отправить сообщение
+          </button>
+        </form>
+
+        <div id="form-success" style="display:none;text-align:center;padding:2rem;">
+          <div style="font-size:3rem;margin-bottom:1rem;">✅</div>
+          <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:600;margin-bottom:0.5rem;">Сообщение отправлено!</h3>
+          <p style="color:var(--text-dim);font-size:0.9rem;">Спасибо за обратную связь. Ответим в ближайшее время.</p>
+          <button onclick="resetForm()" class="btn btn-outline" style="margin-top:1.25rem;">← Отправить ещё</button>
+        </div>
+      </div>
+
+      <!-- INFO CARDS -->
+      <div style="display:flex;flex-direction:column;gap:1.25rem;">
+
+        <!-- Author card -->
+        <div class="card" style="text-align:center;background:linear-gradient(135deg,rgba(0,200,255,0.07),rgba(124,58,237,0.07));">
+          <div style="width:72px;height:72px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1rem;box-shadow:0 8px 30px rgba(0,200,255,0.3);">👨‍💻</div>
+          <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:0.25rem;">Автор проекта</h3>
+          <div style="font-size:1rem;font-weight:600;color:var(--cyan);margin-bottom:0.1rem;">Ерсулин</div>
+          <div style="font-size:0.82rem;color:var(--text-muted);">(заполните полное ФИО)</div>
+          <div style="height:1px;background:var(--border);margin:1rem 0;"></div>
+          <div style="font-size:0.82rem;color:var(--text-dim);line-height:1.8;">
+            <div>🎓 Университет Нархоз</div>
+            <div>📚 Школа цифровых технологий</div>
+            <div>📖 Дисциплина: ИКТ · 1 курс</div>
+            <div>📅 2025–2026 учебный год</div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">📚</div>
+          <div class="info-content">
+            <h4>О проекте</h4>
+            <p>Тема 16: Визуализация и анализ данных о логистических цепочках. Экзаменационный проект по дисциплине ИКТ.</p>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">🤖</div>
+          <div class="info-content">
+            <h4>AI-компоненты</h4>
+            <p>LogiBot работает через Pollinations AI API — бесплатный, без авторизации. Все данные анализируются локально.</p>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">🐙</div>
+          <div class="info-content">
+            <h4>Исходный код</h4>
+            <p>Проект опубликован на GitHub: <a href="https://github.com/Yersulin/IKT-AI" target="_blank" style="color:var(--cyan);text-decoration:none;">github.com/Yersulin/IKT-AI</a></p>
+          </div>
+        </div>
+
+        <!-- Quick links -->
+        <div class="card">
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.9rem;margin-bottom:1rem;">🔗 Быстрые ссылки</div>
+          <div style="display:flex;flex-direction:column;gap:0.5rem;">
+            <a href="analytics.html" class="btn btn-outline btn-sm" style="justify-content:center;">📊 Открыть аналитику</a>
+            <a href="ai-tools.html" class="btn btn-outline btn-sm" style="justify-content:center;">🤖 AI-инструменты</a>
+            <a href="about.html"    class="btn btn-outline btn-sm" style="justify-content:center;">ℹ️ О проекте</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SOCIAL / BOTTOM ROW -->
+    <div style="text-align:center;margin-top:3rem;padding:2rem;background:var(--card);border:1px solid var(--border);border-radius:16px;">
+      <div style="font-size:0.9rem;color:var(--text-dim);margin-bottom:1rem;">Поделиться проектом</div>
+      <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+        <a href="https://github.com/Yersulin/IKT-AI" target="_blank" class="btn btn-outline btn-sm">🐙 GitHub</a>
+        <a href="mailto:ersulincom@gmail.com" class="btn btn-outline btn-sm">📧 Email</a>
+        <button onclick="copyLink()" class="btn btn-outline btn-sm">🔗 Скопировать ссылку</button>
+      </div>
+      <div id="copy-msg" style="display:none;margin-top:0.75rem;font-size:0.82rem;color:var(--green);">✅ Ссылка скопирована!</div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">🔗 LogiChain Analytics</div>
+    <div class="footer-links">
+      <a href="index.html">Главная</a>
+      <a href="analytics.html">Аналитика</a>
+      <a href="ai-tools.html">AI-инструменты</a>
+      <a href="about.html">О проекте</a>
+      <a href="contact.html">Контакты</a>
+    </div>
+    <hr class="footer-hr">
+    <div class="footer-info">
+      <strong>Автор:</strong> Ерсулин (заполните ФИО) &nbsp;·&nbsp;
+      <strong>Дисциплина:</strong> ИКТ — Информационно-коммуникационные технологии<br>
+      <strong>Учебное заведение:</strong> Университет Нархоз &nbsp;·&nbsp;
+      <strong>Программа:</strong> Школа цифровых технологий &nbsp;·&nbsp;
+      <strong>© 2026</strong>
+    </div>
+  </div>
+</footer>
+
+<button id="back-top" style="position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;border-radius:50%;background:var(--grad);border:none;color:white;font-size:1.1rem;cursor:pointer;z-index:999;opacity:0;pointer-events:none;transition:opacity 0.3s;box-shadow:0 4px 20px rgba(0,200,255,0.3);">↑</button>
+
+<script src="main.js"></script>
+<script>
+function submitForm(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = '⏳ Отправка...';
+  btn.disabled = true;
+  setTimeout(() => {
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  }, 1400);
+}
+function resetForm() {
+  document.getElementById('contact-form').reset();
+  document.getElementById('contact-form').style.display = 'block';
+  document.getElementById('form-success').style.display = 'none';
+  document.getElementById('submit-btn').textContent = '📨 Отправить сообщение';
+  document.getElementById('submit-btn').disabled = false;
+}
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const msg = document.getElementById('copy-msg');
+    msg.style.display = 'block';
+    setTimeout(() => msg.style.display = 'none', 2500);
+  });
+}
+</script>
+</body>
+</html>

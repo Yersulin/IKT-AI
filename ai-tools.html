@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-инструменты — LogiChain</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html">
+    <div class="logo-icon">🔗</div>
+    <span class="logo-text">LogiChain</span>
+  </a>
+  <nav>
+    <ul>
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="analytics.html">Аналитика</a></li>
+      <li><a href="ai-tools.html" class="active">AI-инструменты</a></li>
+      <li><a href="about.html">О проекте</a></li>
+      <li><a href="contact.html">Контакты</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <div style="padding:2.5rem 2.5rem 0;max-width:1200px;margin:0 auto;">
+    <div class="section-label" style="margin-bottom:0.5rem;">AI-инструменты</div>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin-bottom:0.4rem;">
+      Умные инструменты на базе <span class="grad-text">искусственного интеллекта</span>
+    </h1>
+    <p style="color:var(--text-dim);font-size:0.95rem;">Оптимизируйте логистику с помощью AI — спрашивайте, анализируйте, прогнозируйте</p>
+  </div>
+
+  <section class="section" style="padding-top:2rem;">
+    <div class="grid-2" style="align-items:start;">
+
+      <!-- CHATBOT -->
+      <div>
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+          <div style="width:40px;height:40px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 4px 16px rgba(0,200,255,0.3);">🤖</div>
+          <div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;">LogiBot — AI Ассистент</div>
+            <div style="font-size:0.78rem;color:var(--text-dim);">Работает через Pollinations AI API · без регистрации</div>
+          </div>
+        </div>
+
+        <!-- Suggestions -->
+        <div class="chat-suggestions" style="padding:0 0 0.75rem;">
+          <span class="suggestion" onclick="setSuggestion(this)">📊 KPI логистики</span>
+          <span class="suggestion" onclick="setSuggestion(this)">🚛 Оптимизация маршрутов</span>
+          <span class="suggestion" onclick="setSuggestion(this)">📦 Управление запасами</span>
+          <span class="suggestion" onclick="setSuggestion(this)">💰 Снижение затрат</span>
+        </div>
+
+        <div class="chatbot-wrap">
+          <div class="chat-header">
+            <div class="chat-avatar">🤖</div>
+            <div>
+              <div class="chat-name">LogiBot</div>
+              <div class="chat-status"><span class="chat-dot"></span> Онлайн</div>
+            </div>
+          </div>
+
+          <div class="chat-messages" id="chat-messages">
+            <div class="msg bot">
+              👋 Привет! Я LogiBot — AI-ассистент по логистике и цепочкам поставок.<br><br>
+              Я могу помочь с анализом KPI, оптимизацией маршрутов, управлением запасами и снижением затрат. Что вас интересует?
+            </div>
+          </div>
+
+          <div class="chat-footer">
+            <input
+              type="text"
+              class="chat-input"
+              id="chat-input"
+              placeholder="Спросите о логистике..."
+              onkeydown="if(event.key==='Enter') doSend()"
+            >
+            <button class="chat-send" id="chat-send-btn" onclick="doSend()">➤</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: ROUTE OPTIMIZER + PREDICTOR -->
+      <div style="display:flex;flex-direction:column;gap:1.5rem;">
+
+        <!-- ROUTE OPTIMIZER -->
+        <div class="card">
+          <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:1.25rem;">
+            <span style="font-size:1.3rem;">🗺️</span>
+            <div>
+              <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1rem;">Оптимизатор маршрутов</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);">Расчёт стоимости, времени и CO₂</div>
+            </div>
+          </div>
+
+          <div class="route-form">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label">Откуда</label>
+                <select class="form-input" id="route-from">
+                  <option>Алматы</option>
+                  <option>Нур-Султан</option>
+                  <option>Шымкент</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label">Куда</label>
+                <select class="form-input" id="route-to">
+                  <option>Нур-Султан</option>
+                  <option>Алматы</option>
+                  <option>Шымкент</option>
+                  <option>Ташкент</option>
+                  <option>Москва</option>
+                  <option>Бишкек</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Вид транспорта</label>
+              <select class="form-input" id="route-mode">
+                <option value="auto">🚛 Автомобильный</option>
+                <option value="rail">🚂 Железнодорожный</option>
+                <option value="air">✈️ Авиационный</option>
+                <option value="sea">🚢 Морской (мультимодальный)</option>
+              </select>
+            </div>
+            <button class="btn btn-primary btn-full" onclick="calcRouteUI()">⚡ Рассчитать маршрут</button>
+          </div>
+
+          <div id="route-result" style="margin-top:1rem;display:none;">
+            <div style="height:1px;background:var(--border);margin-bottom:1rem;"></div>
+            <div style="font-size:0.8rem;color:var(--cyan);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:0.75rem;">Результат расчёта</div>
+            <div id="route-result-content"></div>
+          </div>
+        </div>
+
+        <!-- PREDICTIVE STATS -->
+        <div class="card">
+          <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:1.25rem;">
+            <span style="font-size:1.3rem;">📈</span>
+            <div>
+              <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1rem;">Предиктивная аналитика</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);">Прогноз показателей на следующий квартал</div>
+            </div>
+          </div>
+
+          <div id="predict-content">
+            <button class="btn btn-outline btn-full" onclick="generatePrediction()">🔮 Сгенерировать прогноз</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- AI CAPABILITIES -->
+  <section class="section" style="padding-top:0;padding-bottom:5rem;">
+    <div class="section-head">
+      <div class="section-label">Возможности</div>
+      <h2 class="section-title">Что умеет <span class="grad-text">AI-платформа</span></h2>
+    </div>
+    <div class="grid-3">
+      <div class="card feature-card">
+        <div class="feature-icon">🧠</div>
+        <div class="feature-title">Анализ аномалий</div>
+        <p class="feature-desc">Автоматическое обнаружение нетипичных паттернов в данных: задержки, перерасход затрат, дефицит запасов.</p>
+      </div>
+      <div class="card feature-card">
+        <div class="feature-icon">🔮</div>
+        <div class="feature-title">Прогнозирование спроса</div>
+        <p class="feature-desc">ML-модели предсказывают объёмы поставок на 30/60/90 дней с точностью до 87% на основе исторических данных.</p>
+      </div>
+      <div class="card feature-card">
+        <div class="feature-icon">🗺️</div>
+        <div class="feature-title">Оптимизация маршрутов</div>
+        <p class="feature-desc">Алгоритм VRP находит оптимальные пути с учётом стоимости, времени, CO₂-выбросов и временны́х ограничений.</p>
+      </div>
+      <div class="card feature-card">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">Автоматические KPI</div>
+        <p class="feature-desc">Расчёт OTD, OTIF, Fill Rate, DOI, Cash-to-Cash Cycle Time по загружаемым данным в один клик.</p>
+      </div>
+      <div class="card feature-card">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Алерты в реальном времени</div>
+        <p class="feature-desc">Мгновенные уведомления при отклонении KPI от целевых значений и при обнаружении рисков срыва поставок.</p>
+      </div>
+      <div class="card feature-card">
+        <div class="feature-icon">💬</div>
+        <div class="feature-title">Natural Language Query</div>
+        <p class="feature-desc">Задавайте вопросы на русском языке и получайте аналитику без написания SQL-запросов или формул.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">🔗 LogiChain Analytics</div>
+    <div class="footer-links">
+      <a href="index.html">Главная</a>
+      <a href="analytics.html">Аналитика</a>
+      <a href="ai-tools.html">AI-инструменты</a>
+      <a href="about.html">О проекте</a>
+      <a href="contact.html">Контакты</a>
+    </div>
+    <hr class="footer-hr">
+    <div class="footer-info">
+      <strong>Автор:</strong> Ерсулин (заполните ФИО) &nbsp;·&nbsp;
+      <strong>Дисциплина:</strong> ИКТ — Информационно-коммуникационные технологии<br>
+      <strong>Учебное заведение:</strong> Университет Нархоз &nbsp;·&nbsp;
+      <strong>Программа:</strong> Школа цифровых технологий &nbsp;·&nbsp;
+      <strong>© 2026</strong>
+    </div>
+  </div>
+</footer>
+
+<button id="back-top" style="position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;border-radius:50%;background:var(--grad);border:none;color:white;font-size:1.1rem;cursor:pointer;z-index:999;opacity:0;pointer-events:none;transition:opacity 0.3s;box-shadow:0 4px 20px rgba(0,200,255,0.3);">↑</button>
+
+<script src="main.js"></script>
+<script>
+/* Chatbot */
+function doSend() {
+  const inp = document.getElementById('chat-input');
+  const msgs = document.getElementById('chat-messages');
+  const btn = document.getElementById('chat-send-btn');
+  sendChat(inp.value, msgs, inp, btn);
+}
+function setSuggestion(el) {
+  document.getElementById('chat-input').value = el.textContent.replace(/^[^\w]+/,'').trim();
+  document.getElementById('chat-input').focus();
+}
+
+/* Route optimizer UI */
+function calcRouteUI() {
+  const from = document.getElementById('route-from').value;
+  const to   = document.getElementById('route-to').value;
+  const mode = document.getElementById('route-mode').value;
+
+  if (from === to) { alert('Выберите разные города'); return; }
+
+  const r = calcRoute(from, to, mode);
+  const modeLabels = { auto:'🚛 Автомобильный', rail:'🚂 Железнодорожный', air:'✈️ Авиационный', sea:'🚢 Морской' };
+
+  document.getElementById('route-result-content').innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+      <div style="background:rgba(0,200,255,0.07);border:1px solid var(--border);border-radius:10px;padding:0.9rem;text-align:center;">
+        <div style="font-size:1.5rem;font-family:'Space Grotesk',sans-serif;font-weight:700;color:white;">${r.dist.toLocaleString()}</div>
+        <div style="font-size:0.75rem;color:var(--text-muted);">км расстояние</div>
+      </div>
+      <div style="background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.2);border-radius:10px;padding:0.9rem;text-align:center;">
+        <div style="font-size:1.5rem;font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--green);">${r.time}</div>
+        <div style="font-size:0.75rem;color:var(--text-muted);">часов в пути</div>
+      </div>
+      <div style="background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.2);border-radius:10px;padding:0.9rem;text-align:center;">
+        <div style="font-size:1.5rem;font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--orange);">$${Number(r.price).toLocaleString()}</div>
+        <div style="font-size:0.75rem;color:var(--text-muted);">стоимость перевозки</div>
+      </div>
+      <div style="background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.2);border-radius:10px;padding:0.9rem;text-align:center;">
+        <div style="font-size:1.5rem;font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--red);">${r.co2}</div>
+        <div style="font-size:0.75rem;color:var(--text-muted);">гр CO₂/т·км</div>
+      </div>
+    </div>
+    <div style="margin-top:0.9rem;font-size:0.82rem;color:var(--text-dim);background:rgba(255,255,255,0.04);border-radius:8px;padding:0.75rem;">
+      📍 <strong style="color:var(--text);">${from} → ${to}</strong> · ${modeLabels[mode]}<br>
+      💡 <span style="color:var(--text-dim);">Рекомендация: при объёме > 20т и не срочной поставке — рассмотрите ж/д (экономия ~35%).</span>
+    </div>`;
+  document.getElementById('route-result').style.display = 'block';
+}
+
+/* Predictive Stats */
+function generatePrediction() {
+  const btn = document.querySelector('#predict-content button');
+  if (btn) { btn.textContent = '⏳ Генерация...'; btn.disabled = true; }
+
+  setTimeout(() => {
+    const metrics = [
+      { name:'OTD прогноз Q1 2026', val:'95.5%', trend:'▲', color:'var(--green)', bar:95.5 },
+      { name:'OTIF прогноз Q1 2026', val:'92.1%', trend:'▲', color:'var(--green)', bar:92.1 },
+      { name:'Lead Time, дней',      val:'3.9',   trend:'▼', color:'var(--cyan)',  bar:61 },
+      { name:'Fill Rate',            val:'98.2%', trend:'▲', color:'var(--green)', bar:98.2 },
+      { name:'Риск срыва поставок',  val:'6.3%',  trend:'▼', color:'var(--orange)', bar:6.3 },
+    ];
+
+    document.getElementById('predict-content').innerHTML = `
+      <div style="font-size:0.8rem;color:var(--cyan);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:1rem;">Прогноз Q1 2026 · Confidence 84%</div>
+      ${metrics.map(m => `
+        <div class="progress-row">
+          <div class="progress-meta">
+            <span class="progress-name">${m.trend} ${m.name}</span>
+            <span class="progress-pct" style="color:${m.color};">${m.val}</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" data-w="${m.bar}%"></div>
+          </div>
+        </div>`).join('')}
+      <div style="margin-top:1rem;font-size:0.78rem;color:var(--text-muted);">
+        🤖 Прогноз построен на основе данных за 12 месяцев с помощью ARIMA + ML-ансамбля
+      </div>`;
+
+    animateProgressBars();
+  }, 1200);
+}
+</script>
+</body>
+</html>

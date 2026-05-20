@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Аналитика — LogiChain</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html">
+    <div class="logo-icon">🔗</div>
+    <span class="logo-text">LogiChain</span>
+  </a>
+  <nav>
+    <ul>
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="analytics.html" class="active">Аналитика</a></li>
+      <li><a href="ai-tools.html">AI-инструменты</a></li>
+      <li><a href="about.html">О проекте</a></li>
+      <li><a href="contact.html">Контакты</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <div style="padding: 2.5rem 2.5rem 0; max-width:1200px; margin:0 auto;">
+    <div class="section-label" style="margin-bottom:0.5rem;">Dashboard</div>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin-bottom:0.4rem;">
+      Аналитика <span class="grad-text">логистических цепочек</span>
+    </h1>
+    <p style="color:var(--text-dim);font-size:0.95rem;margin-bottom:0.5rem;">
+      Данные за 2025 год · Обновлено: май 2026
+    </p>
+    <!-- Period tabs -->
+    <div style="display:flex;gap:0.4rem;margin-top:1.25rem;flex-wrap:wrap;">
+      <button class="btn btn-sm btn-primary" onclick="setPeriod(this,'2025')" id="tab-2025">2025 год</button>
+      <button class="btn btn-sm btn-outline" onclick="setPeriod(this,'q4')" id="tab-q4">Q4 2025</button>
+      <button class="btn btn-sm btn-outline" onclick="setPeriod(this,'q3')" id="tab-q3">Q3 2025</button>
+      <button class="btn btn-sm btn-outline" onclick="setPeriod(this,'q2')" id="tab-q2">Q2 2025</button>
+    </div>
+  </div>
+
+  <!-- KPI METRICS -->
+  <section class="section" style="padding-top:2rem;padding-bottom:2rem;">
+    <div class="grid-4">
+      <div class="metric-card fade-up">
+        <div class="metric-icon" style="background:rgba(0,200,255,0.12);">📦</div>
+        <div class="metric-val" id="kpi-otd" data-target="94.7" data-suffix="%" data-dec="1">—</div>
+        <div class="metric-lbl">OTD — доставка в срок</div>
+        <span class="metric-change up">▲ +2.3% к прошлому году</span>
+      </div>
+      <div class="metric-card fade-up delay-1">
+        <div class="metric-icon" style="background:rgba(16,185,129,0.12);">✅</div>
+        <div class="metric-val" data-target="91.2" data-suffix="%" data-dec="1">—</div>
+        <div class="metric-lbl">OTIF — полные доставки</div>
+        <span class="metric-change up">▲ +1.8% к прошлому году</span>
+      </div>
+      <div class="metric-card fade-up delay-2">
+        <div class="metric-icon" style="background:rgba(245,158,11,0.12);">⏱</div>
+        <div class="metric-val" data-target="4.2" data-suffix="д" data-dec="1">—</div>
+        <div class="metric-lbl">Среднее время доставки</div>
+        <span class="metric-change up">▼ −0.6д к прошлому году</span>
+      </div>
+      <div class="metric-card fade-up delay-3">
+        <div class="metric-icon" style="background:rgba(124,58,237,0.12);">💰</div>
+        <div class="metric-val">$<span data-target="2.34" data-suffix="" data-dec="2">—</span></div>
+        <div class="metric-lbl">Стоимость за кг/км, USD</div>
+        <span class="metric-change down">▲ +0.12 к прошлому году</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHARTS ROW 1 -->
+  <section class="section" style="padding-top:0;">
+    <div class="grid-2">
+
+      <!-- LINE CHART -->
+      <div class="card">
+        <div class="chart-title">📈 Показатель OTD по месяцам</div>
+        <div class="chart-subtitle">Доля своевременных доставок, %</div>
+        <div class="chart-wrap">
+          <canvas id="chart-otd"></canvas>
+        </div>
+      </div>
+
+      <!-- BAR CHART -->
+      <div class="card">
+        <div class="chart-title">🌍 Логистические затраты по регионам</div>
+        <div class="chart-subtitle">Млн USD, 2025 год</div>
+        <div class="chart-wrap">
+          <canvas id="chart-regions"></canvas>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CHARTS ROW 2 -->
+  <section class="section" style="padding-top:0;">
+    <div class="grid-2">
+
+      <!-- DOUGHNUT -->
+      <div class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:center;">
+        <div>
+          <div class="chart-title">🚚 Распределение по видам транспорта</div>
+          <div class="chart-subtitle">Доля в общем объёме перевозок</div>
+          <div class="chart-wrap" style="height:220px;">
+            <canvas id="chart-transport"></canvas>
+          </div>
+        </div>
+        <div>
+          <div id="transport-legend" style="display:flex;flex-direction:column;gap:0.6rem;"></div>
+        </div>
+      </div>
+
+      <!-- LEAD TIME BAR -->
+      <div class="card">
+        <div class="chart-title">⏱ Среднее Lead Time по категориям</div>
+        <div class="chart-subtitle">Дней от заказа до доставки</div>
+        <div class="chart-wrap">
+          <canvas id="chart-leadtime"></canvas>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TABLE -->
+  <section class="section" style="padding-top:0;">
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:gap 0.5rem;">
+        <div>
+          <div class="chart-title" style="margin-bottom:0.25rem;">📋 Топ-10 логистических маршрутов</div>
+          <div class="chart-subtitle" style="margin-bottom:0;">По объёму перевозок, 2025</div>
+        </div>
+        <button class="btn btn-sm btn-outline" onclick="exportTable()">⬇ Экспорт CSV</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Маршрут</th>
+              <th>Вид транспорта</th>
+              <th>Объём, тонн</th>
+              <th>Ср. время, дней</th>
+              <th>Затраты, USD/т</th>
+              <th>OTD</th>
+              <th>Статус</th>
+            </tr>
+          </thead>
+          <tbody id="routes-table"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI INSIGHTS -->
+  <section class="section" style="padding-top:0;padding-bottom:5rem;">
+    <div class="card ai-block">
+      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;">
+        <div style="width:40px;height:40px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:1.1rem;">🤖</div>
+        <div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1rem;">AI-анализ данных</div>
+          <div style="font-size:0.78rem;color:var(--text-muted);">Автоматически сгенерировано · LogiBot</div>
+        </div>
+      </div>
+
+      <div class="insight-block">
+        <span class="insight-icon">📊</span>
+        <span><strong>Общая тенденция:</strong> Показатель OTD за 2025 год вырос с 92.4% в январе до 96.8% в декабре, что свидетельствует о системном улучшении операционной эффективности. Наиболее значительный прирост зафиксирован после внедрения AI-маршрутизации в Q3 2025 (+2.1%).</span>
+      </div>
+      <div class="insight-block">
+        <span class="insight-icon">⚠️</span>
+        <span><strong>Выявленная проблема:</strong> Регион «Центральная Азия» демонстрирует наибольшие затраты ($3.12/т·км), что на 33% выше среднего. Основная причина — низкая консолидация грузов и ограниченная инфраструктура. Рекомендуется перевод 40% объёмов на железнодорожный транспорт (экономия ~$2.4M/год).</span>
+      </div>
+      <div class="insight-block">
+        <span class="insight-icon">💡</span>
+        <span><strong>Возможность оптимизации:</strong> Авиационный транспорт используется в 15% маршрутов, при этом 38% этих грузов — не срочные. Перевод на морскую или железнодорожную доставку сократит CO₂-выбросы на ~42% и снизит затраты на $1.8M ежегодно.</span>
+      </div>
+      <div class="insight-block">
+        <span class="insight-icon">📈</span>
+        <span><strong>Прогноз на Q1 2026:</strong> При сохранении текущих трендов OTD ожидается на уровне 95.5–96.0%. Lead Time по категории «Электроника» может вырасти на 0.3–0.8 дня из-за ожидаемого роста спроса. Рекомендуется увеличить страховой запас на 15%.</span>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">🔗 LogiChain Analytics</div>
+    <div class="footer-links">
+      <a href="index.html">Главная</a>
+      <a href="analytics.html">Аналитика</a>
+      <a href="ai-tools.html">AI-инструменты</a>
+      <a href="about.html">О проекте</a>
+      <a href="contact.html">Контакты</a>
+    </div>
+    <hr class="footer-hr">
+    <div class="footer-info">
+      <strong>Автор:</strong> Ерсулин (заполните ФИО) &nbsp;·&nbsp;
+      <strong>Дисциплина:</strong> ИКТ — Информационно-коммуникационные технологии<br>
+      <strong>Учебное заведение:</strong> Университет Нархоз &nbsp;·&nbsp;
+      <strong>Программа:</strong> Школа цифровых технологий &nbsp;·&nbsp;
+      <strong>© 2026</strong>
+    </div>
+  </div>
+</footer>
+
+<button id="back-top" style="position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;border-radius:50%;background:var(--grad);border:none;color:white;font-size:1.1rem;cursor:pointer;z-index:999;opacity:0;pointer-events:none;transition:opacity 0.3s;box-shadow:0 4px 20px rgba(0,200,255,0.3);">↑</button>
+
+<script src="main.js"></script>
+<script>
+/* ── Chart defaults ──────────────────────────────────────── */
+Chart.defaults.color = '#8899b3';
+Chart.defaults.font.family = "'Inter', sans-serif";
+Chart.defaults.font.size = 12;
+
+const MONTHS = ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'];
+
+/* OTD Line Chart */
+const ctxOTD = document.getElementById('chart-otd').getContext('2d');
+const otdData = [92.4, 92.1, 93.0, 93.6, 93.8, 94.5, 94.2, 95.1, 95.8, 95.4, 96.2, 96.8];
+
+const gradOTD = ctxOTD.createLinearGradient(0, 0, 0, 280);
+gradOTD.addColorStop(0, 'rgba(0,200,255,0.35)');
+gradOTD.addColorStop(1, 'rgba(0,200,255,0)');
+
+new Chart(ctxOTD, {
+  type: 'line',
+  data: {
+    labels: MONTHS,
+    datasets: [{
+      label: 'OTD %',
+      data: otdData,
+      borderColor: '#00c8ff',
+      backgroundColor: gradOTD,
+      fill: true,
+      tension: 0.45,
+      pointBackgroundColor: '#00c8ff',
+      pointRadius: 4,
+      pointHoverRadius: 7,
+      borderWidth: 2.5,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.y}%` } } },
+    scales: {
+      x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#4a6080' } },
+      y: { min: 90, max: 99, grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { color: '#4a6080', callback: v => v + '%' } }
+    }
+  }
+});
+
+/* Regional Bar Chart */
+new Chart(document.getElementById('chart-regions').getContext('2d'), {
+  type: 'bar',
+  data: {
+    labels: ['Казахстан', 'Центр. Азия', 'Китай', 'Европа', 'Россия', 'Ближ. Восток'],
+    datasets: [{
+      label: 'Затраты, млн USD',
+      data: [148, 92, 210, 185, 134, 76],
+      backgroundColor: [
+        'rgba(0,200,255,0.75)', 'rgba(239,68,68,0.65)', 'rgba(245,158,11,0.65)',
+        'rgba(124,58,237,0.65)', 'rgba(16,185,129,0.65)', 'rgba(0,200,255,0.45)'
+      ],
+      borderRadius: 8, borderWidth: 0,
+      hoverBackgroundColor: ['rgba(0,200,255,0.95)', 'rgba(239,68,68,0.85)', 'rgba(245,158,11,0.85)', 'rgba(124,58,237,0.85)', 'rgba(16,185,129,0.85)', 'rgba(0,200,255,0.75)'],
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: '#4a6080' } },
+      y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#4a6080', callback: v => '$' + v + 'M' } }
+    }
+  }
+});
+
+/* Transport Doughnut */
+const transportData = {
+  labels: ['Автомобильный', 'Морской', 'Железнодорожный', 'Авиационный'],
+  pcts: [45, 28, 12, 15],
+  colors: ['#00c8ff', '#7c3aed', '#10b981', '#f59e0b'],
+  icons: ['🚛', '🚢', '🚂', '✈️']
+};
+
+const doughnut = new Chart(document.getElementById('chart-transport').getContext('2d'), {
+  type: 'doughnut',
+  data: {
+    labels: transportData.labels,
+    datasets: [{
+      data: transportData.pcts,
+      backgroundColor: transportData.colors.map(c => c + 'CC'),
+      borderColor: transportData.colors,
+      borderWidth: 2, hoverOffset: 10,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    cutout: '68%',
+    plugins: { legend: { display: false } }
+  }
+});
+
+// Custom legend
+const leg = document.getElementById('transport-legend');
+transportData.labels.forEach((lbl, i) => {
+  leg.innerHTML += `
+    <div style="display:flex;align-items:center;gap:0.6rem;padding:0.4rem 0;">
+      <span style="font-size:1.1rem;">${transportData.icons[i]}</span>
+      <div>
+        <div style="font-size:0.82rem;color:var(--text-dim);">${lbl}</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:${transportData.colors[i]};">${transportData.pcts[i]}%</div>
+      </div>
+    </div>`;
+});
+
+/* Lead Time Bar */
+new Chart(document.getElementById('chart-leadtime').getContext('2d'), {
+  type: 'bar',
+  data: {
+    labels: ['Электроника', 'Продукты', 'Текстиль', 'Химикаты', 'Авто-зап.', 'Мебель', 'Фарма'],
+    datasets: [
+      {
+        label: 'Факт 2025',
+        data: [5.2, 2.1, 6.8, 4.4, 7.2, 9.5, 3.6],
+        backgroundColor: 'rgba(0,200,255,0.7)', borderRadius: 6, borderWidth: 0,
+      },
+      {
+        label: 'Цель',
+        data: [4.5, 1.8, 6.0, 4.0, 6.5, 8.0, 3.0],
+        backgroundColor: 'rgba(16,185,129,0.5)', borderRadius: 6, borderWidth: 0,
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top', labels: { boxWidth: 12, padding: 16 } } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: '#4a6080' } },
+      y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#4a6080', callback: v => v + 'д' } }
+    }
+  }
+});
+
+/* Routes Table */
+const routes = [
+  { from:'Алматы',     to:'Нур-Султан', mode:'🚛 Авто',      vol:48200, time:1.5, cost:38,  otd:97.2, status:'ok' },
+  { from:'Алматы',     to:'Шанхай',     mode:'🚂 Ж/д',        vol:32100, time:12,  cost:52,  otd:93.8, status:'ok' },
+  { from:'Алматы',     to:'Москва',     mode:'🚛 Авто',      vol:18400, time:4.2,  cost:84,  otd:91.5, status:'warn' },
+  { from:'Нур-Султан', to:'Берлин',     mode:'✈️ Авиа',      vol: 2100, time:1.2, cost:420, otd:98.9, status:'ok' },
+  { from:'Шымкент',    to:'Ташкент',    mode:'🚛 Авто',      vol:22800, time:0.5, cost:31,  otd:95.4, status:'ok' },
+  { from:'Алматы',     to:'Стамбул',    mode:'🚂 Ж/д',        vol:14600, time:8.5, cost:67,  otd:89.2, status:'warn' },
+  { from:'Алматы',     to:'Дубай',      mode:'✈️ Авиа',      vol: 3800, time:0.8, cost:510, otd:99.1, status:'ok' },
+  { from:'Нур-Султан', to:'Пекин',      mode:'🚂 Ж/д',        vol:26500, time:9.0, cost:48,  otd:92.7, status:'ok' },
+  { from:'Шымкент',    to:'Алматы',     mode:'🚛 Авто',      vol:58900, time:0.3, cost:22,  otd:98.5, status:'ok' },
+  { from:'Алматы',     to:'Хельсинки', mode:'🚂 Ж/д',        vol: 9200, time:14,  cost:71,  otd:87.3, status:'err' },
+];
+
+const tbody = document.getElementById('routes-table');
+routes.forEach((r, i) => {
+  const statusMap = { ok: ['badge-ok','Норма'], warn: ['badge-warn','Внимание'], err: ['badge-err','Задержка'] };
+  const [sc, sl] = statusMap[r.status];
+  tbody.innerHTML += `
+    <tr>
+      <td style="color:var(--text-muted);">${i+1}</td>
+      <td style="color:var(--text);font-weight:500;">${r.from} → ${r.to}</td>
+      <td>${r.mode}</td>
+      <td>${r.vol.toLocaleString()}</td>
+      <td>${r.time}</td>
+      <td>$${r.cost}</td>
+      <td style="color:${r.otd>=95?'var(--green)':r.otd>=90?'var(--orange)':'var(--red)'};">${r.otd}%</td>
+      <td><span class="badge ${sc}">${sl}</span></td>
+    </tr>`;
+});
+
+/* Period switch */
+function setPeriod(btn, period) {
+  document.querySelectorAll('[onclick^="setPeriod"]').forEach(b => {
+    b.className = 'btn btn-sm btn-outline';
+  });
+  btn.className = 'btn btn-sm btn-primary';
+}
+
+/* Export CSV */
+function exportTable() {
+  const rows = [['№','Откуда','Куда','Транспорт','Объём','Время','Затраты','OTD']];
+  routes.forEach((r, i) => rows.push([i+1, r.from, r.to, r.mode.replace(/[^\w\s/]/g,'').trim(), r.vol, r.time, r.cost, r.otd+'%']));
+  const csv = rows.map(r => r.join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent('﻿' + csv);
+  a.download = 'logichain_routes_2025.csv';
+  a.click();
+}
+</script>
+</body>
+</html>
