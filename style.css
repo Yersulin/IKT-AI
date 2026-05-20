@@ -602,6 +602,21 @@ footer {
   main { padding-top:48px; }
 }
 
+/* ── VIDEO ───────────────────────────────────────────────────── */
+.video-section {
+  width: 100%;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+.hero-video {
+  width: 100%;
+  max-height: 520px;
+  object-fit: cover;
+  display: block;
+}
+
 /* ── HEADER CONTROLS (lang + music) ─────────────────────────── */
 .header-controls {
   display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0;
