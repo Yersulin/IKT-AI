@@ -49,25 +49,25 @@
   <section class="section" style="padding-top:2rem;padding-bottom:2rem;">
     <div class="grid-4">
       <div class="metric-card fade-up">
-        <div class="metric-icon" style="background:rgba(0,200,255,0.12);">📦</div>
+        <div class="metric-icon" style="background:var(--blue-dim);">📦</div>
         <div class="metric-val" id="kpi-otd" data-target="94.7" data-suffix="%" data-dec="1">—</div>
         <div class="metric-lbl">OTD — доставка в срок</div>
         <span class="metric-change up">▲ +2.3% к прошлому году</span>
       </div>
       <div class="metric-card fade-up delay-1">
-        <div class="metric-icon" style="background:rgba(16,185,129,0.12);">✅</div>
+        <div class="metric-icon" style="background:var(--green-dim);">✅</div>
         <div class="metric-val" data-target="91.2" data-suffix="%" data-dec="1">—</div>
         <div class="metric-lbl">OTIF — полные доставки</div>
         <span class="metric-change up">▲ +1.8% к прошлому году</span>
       </div>
       <div class="metric-card fade-up delay-2">
-        <div class="metric-icon" style="background:rgba(245,158,11,0.12);">⏱</div>
+        <div class="metric-icon" style="background:var(--orange-dim);">⏱</div>
         <div class="metric-val" data-target="4.2" data-suffix="д" data-dec="1">—</div>
         <div class="metric-lbl">Среднее время доставки</div>
         <span class="metric-change up">▼ −0.6д к прошлому году</span>
       </div>
       <div class="metric-card fade-up delay-3">
-        <div class="metric-icon" style="background:rgba(124,58,237,0.12);">💰</div>
+        <div class="metric-icon" style="background:var(--purple-dim);">💰</div>
         <div class="metric-val">$<span data-target="2.34" data-suffix="" data-dec="2">—</span></div>
         <div class="metric-lbl">Стоимость за кг/км, USD</div>
         <span class="metric-change down">▲ +0.12 к прошлому году</span>
@@ -167,7 +167,7 @@
         <div style="width:40px;height:40px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:1.1rem;">🤖</div>
         <div>
           <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1rem;">AI-анализ данных</div>
-          <div style="font-size:0.78rem;color:var(--text-muted);">Автоматически сгенерировано · LogiBot</div>
+          <div style="font-size:0.78rem;color:var(--text-3);">Автоматически сгенерировано · LogiBot</div>
         </div>
       </div>
 
@@ -220,7 +220,7 @@
 <script src="i18n.js"></script>
 <script>
 /* ── Chart defaults ──────────────────────────────────────── */
-Chart.defaults.color = '#8899b3';
+Chart.defaults.color = '#86868b';
 Chart.defaults.font.family = "'Inter', sans-serif";
 Chart.defaults.font.size = 12;
 
@@ -231,8 +231,8 @@ const ctxOTD = document.getElementById('chart-otd').getContext('2d');
 const otdData = [92.4, 92.1, 93.0, 93.6, 93.8, 94.5, 94.2, 95.1, 95.8, 95.4, 96.2, 96.8];
 
 const gradOTD = ctxOTD.createLinearGradient(0, 0, 0, 280);
-gradOTD.addColorStop(0, 'rgba(0,200,255,0.35)');
-gradOTD.addColorStop(1, 'rgba(0,200,255,0)');
+gradOTD.addColorStop(0, 'rgba(0,113,227,0.18)');
+gradOTD.addColorStop(1, 'rgba(0,113,227,0)');
 
 new Chart(ctxOTD, {
   type: 'line',
@@ -241,11 +241,11 @@ new Chart(ctxOTD, {
     datasets: [{
       label: 'OTD %',
       data: otdData,
-      borderColor: '#00c8ff',
+      borderColor: '#0071e3',
       backgroundColor: gradOTD,
       fill: true,
       tension: 0.45,
-      pointBackgroundColor: '#00c8ff',
+      pointBackgroundColor: '#0071e3',
       pointRadius: 4,
       pointHoverRadius: 7,
       borderWidth: 2.5,
@@ -255,8 +255,8 @@ new Chart(ctxOTD, {
     responsive: true, maintainAspectRatio: false,
     plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.y}%` } } },
     scales: {
-      x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#4a6080' } },
-      y: { min: 90, max: 99, grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { color: '#4a6080', callback: v => v + '%' } }
+      x: { grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { color: '#86868b' } },
+      y: { min: 90, max: 99, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { color: '#4a6080', callback: v => v + '%' } }
     }
   }
 });
@@ -270,19 +270,19 @@ new Chart(document.getElementById('chart-regions').getContext('2d'), {
       label: 'Затраты, млн USD',
       data: [148, 92, 210, 185, 134, 76],
       backgroundColor: [
-        'rgba(0,200,255,0.75)', 'rgba(239,68,68,0.65)', 'rgba(245,158,11,0.65)',
-        'rgba(124,58,237,0.65)', 'rgba(16,185,129,0.65)', 'rgba(0,200,255,0.45)'
+        'rgba(0,113,227,0.75)', 'rgba(255,59,48,0.65)', 'rgba(255,149,0,0.65)',
+        'rgba(175,82,222,0.65)', 'rgba(52,199,89,0.65)', 'rgba(0,113,227,0.40)'
       ],
       borderRadius: 8, borderWidth: 0,
-      hoverBackgroundColor: ['rgba(0,200,255,0.95)', 'rgba(239,68,68,0.85)', 'rgba(245,158,11,0.85)', 'rgba(124,58,237,0.85)', 'rgba(16,185,129,0.85)', 'rgba(0,200,255,0.75)'],
+      hoverBackgroundColor: ['rgba(0,113,227,0.95)', 'rgba(255,59,48,0.85)', 'rgba(255,149,0,0.85)', 'rgba(175,82,222,0.85)', 'rgba(52,199,89,0.85)', 'rgba(0,113,227,0.70)'],
     }]
   },
   options: {
     responsive: true, maintainAspectRatio: false,
     plugins: { legend: { display: false } },
     scales: {
-      x: { grid: { display: false }, ticks: { color: '#4a6080' } },
-      y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#4a6080', callback: v => '$' + v + 'M' } }
+      x: { grid: { display: false }, ticks: { color: '#86868b' } },
+      y: { grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { color: '#4a6080', callback: v => '$' + v + 'M' } }
     }
   }
 });
@@ -291,7 +291,7 @@ new Chart(document.getElementById('chart-regions').getContext('2d'), {
 const transportData = {
   labels: ['Автомобильный', 'Морской', 'Железнодорожный', 'Авиационный'],
   pcts: [45, 28, 12, 15],
-  colors: ['#00c8ff', '#7c3aed', '#10b981', '#f59e0b'],
+  colors: ['#0071e3', '#af52de', '#34c759', '#ff9500'],
   icons: ['🚛', '🚢', '🚂', '✈️']
 };
 
@@ -335,12 +335,12 @@ new Chart(document.getElementById('chart-leadtime').getContext('2d'), {
       {
         label: 'Факт 2025',
         data: [5.2, 2.1, 6.8, 4.4, 7.2, 9.5, 3.6],
-        backgroundColor: 'rgba(0,200,255,0.7)', borderRadius: 6, borderWidth: 0,
+        backgroundColor: 'rgba(0,113,227,0.7)', borderRadius: 6, borderWidth: 0,
       },
       {
         label: 'Цель',
         data: [4.5, 1.8, 6.0, 4.0, 6.5, 8.0, 3.0],
-        backgroundColor: 'rgba(16,185,129,0.5)', borderRadius: 6, borderWidth: 0,
+        backgroundColor: 'rgba(52,199,89,0.5)', borderRadius: 6, borderWidth: 0,
       }
     ]
   },
@@ -348,8 +348,8 @@ new Chart(document.getElementById('chart-leadtime').getContext('2d'), {
     responsive: true, maintainAspectRatio: false,
     plugins: { legend: { position: 'top', labels: { boxWidth: 12, padding: 16 } } },
     scales: {
-      x: { grid: { display: false }, ticks: { color: '#4a6080' } },
-      y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#4a6080', callback: v => v + 'д' } }
+      x: { grid: { display: false }, ticks: { color: '#86868b' } },
+      y: { grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { color: '#4a6080', callback: v => v + 'д' } }
     }
   }
 });
@@ -374,7 +374,7 @@ routes.forEach((r, i) => {
   const [sc, sl] = statusMap[r.status];
   tbody.innerHTML += `
     <tr>
-      <td style="color:var(--text-muted);">${i+1}</td>
+      <td style="color:var(--text-3);">${i+1}</td>
       <td style="color:var(--text);font-weight:500;">${r.from} → ${r.to}</td>
       <td>${r.mode}</td>
       <td>${r.vol.toLocaleString()}</td>

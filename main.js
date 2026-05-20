@@ -1,7 +1,8 @@
-/* ── Shared utilities ───────────────────────────────────── */
+/* ── Shared utilities ───────────────────────────────────────── */
 
 document.addEventListener('DOMContentLoaded', () => {
   setActiveNav();
+  initReveal();
   animateCounters();
   animateProgressBars();
   initBackToTop();
@@ -14,7 +15,15 @@ function setActiveNav() {
   });
 }
 
-/* Counter animation ─────────────────────────────────────── */
+/* Reveal on scroll ──────────────────────────────────────────── */
+function initReveal() {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+}
+
+/* Counter animation ─────────────────────────────────────────── */
 function animateCounters() {
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -32,7 +41,7 @@ function runCounter(el) {
   const suffix = el.dataset.suffix || '';
   const prefix = el.dataset.prefix || '';
   const dec    = (el.dataset.dec | 0) || 0;
-  const dur    = 2200;
+  const dur    = 2400;
   const t0     = performance.now();
   const step   = now => {
     const p = Math.min((now - t0) / dur, 1);
@@ -43,7 +52,7 @@ function runCounter(el) {
   requestAnimationFrame(step);
 }
 
-/* Progress bars ─────────────────────────────────────────── */
+/* Progress bars ─────────────────────────────────────────────── */
 function animateProgressBars() {
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -56,7 +65,7 @@ function animateProgressBars() {
   document.querySelectorAll('.progress-row').forEach(el => io.observe(el));
 }
 
-/* Back to top ───────────────────────────────────────────── */
+/* Back to top ───────────────────────────────────────────────── */
 function initBackToTop() {
   const btn = document.getElementById('back-top');
   if (!btn) return;
@@ -67,7 +76,7 @@ function initBackToTop() {
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
-/* Network canvas (index.html) ───────────────────────────── */
+/* ── Network Canvas (light theme) ───────────────────────────── */
 function initNetworkCanvas() {
   const canvas = document.getElementById('network-canvas');
   if (!canvas) return;
@@ -80,23 +89,20 @@ function initNetworkCanvas() {
   resize();
   window.addEventListener('resize', resize);
 
-  const ICONS = ['🏭','⚓','✈️','🚢','🚛','🏪','📦','🌐'];
-  const N = 22;
-  const nodes = Array.from({ length: N }, (_, i) => ({
+  const N = 24;
+  const nodes = Array.from({ length: N }, () => ({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
-    vx: (Math.random() - 0.5) * 0.4,
-    vy: (Math.random() - 0.5) * 0.4,
-    r: 3 + Math.random() * 3,
-    icon: i < ICONS.length ? ICONS[i] : null,
+    vx: (Math.random() - 0.5) * 0.35,
+    vy: (Math.random() - 0.5) * 0.35,
+    r: 2 + Math.random() * 2.5,
   }));
 
-  const DIST = 180;
+  const DIST = 170;
 
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // edges
     for (let i = 0; i < N; i++) {
       for (let j = i + 1; j < N; j++) {
         const dx = nodes[i].x - nodes[j].x;
@@ -106,27 +112,20 @@ function initNetworkCanvas() {
           ctx.beginPath();
           ctx.moveTo(nodes[i].x, nodes[i].y);
           ctx.lineTo(nodes[j].x, nodes[j].y);
-          const a = (1 - d / DIST) * 0.35;
-          ctx.strokeStyle = `rgba(0,200,255,${a})`;
-          ctx.lineWidth = 0.8;
+          const a = (1 - d / DIST) * 0.18;
+          ctx.strokeStyle = `rgba(0,113,227,${a})`;
+          ctx.lineWidth = 1;
           ctx.stroke();
         }
       }
     }
 
-    // nodes
     nodes.forEach(n => {
       ctx.beginPath();
       ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(0,200,255,0.55)';
+      ctx.fillStyle = 'rgba(0,113,227,0.35)';
       ctx.fill();
-      ctx.strokeStyle = 'rgba(0,200,255,0.8)';
-      ctx.lineWidth = 1;
-      ctx.stroke();
-    });
 
-    // move
-    nodes.forEach(n => {
       n.x += n.vx; n.y += n.vy;
       if (n.x < 0 || n.x > canvas.width)  n.vx *= -1;
       if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
@@ -137,10 +136,9 @@ function initNetworkCanvas() {
   draw();
 }
 
-/* AI Chatbot ─────────────────────────────────────────────── */
+/* ── AI Chatbot ─────────────────────────────────────────────── */
 async function sendChat(userText, messagesEl, inputEl, sendBtn) {
   if (!userText.trim()) return;
-
   appendMsg(messagesEl, userText, 'user');
   inputEl.value = '';
   sendBtn.disabled = true;
@@ -170,7 +168,6 @@ async function sendChat(userText, messagesEl, inputEl, sendBtn) {
         seed: Math.floor(Math.random() * 9999),
       }),
     });
-
     const data = await resp.json();
     const reply = data?.choices?.[0]?.message?.content || data?.text || getLocalReply(userText);
     history.push({ role: 'assistant', content: reply });
@@ -201,32 +198,31 @@ function appendMsg(container, text, type) {
 function getLocalReply(q) {
   q = q.toLowerCase();
   if (q.includes('kpi') || q.includes('кпи') || q.includes('показател'))
-    return 'Ключевые KPI логистики: OTD (On-Time Delivery) — норма 95%+, OTIF (On-Time In Full) — 90%+, Fill Rate — 97-99%, Lead Time — зависит от сегмента (B2B: 3-7 дней). Улучшение OTD на 5% снижает затраты на обслуживание претензий на 12%.';
+    return 'Ключевые KPI: OTD (On-Time Delivery) — норма 95%+, OTIF — 90%+, Fill Rate — 97-99%, Lead Time — 3-7 дней (B2B). Улучшение OTD на 5% снижает затраты на претензии на 12%.';
   if (q.includes('маршрут') || q.includes('оптимиз'))
-    return 'Оптимизация маршрутов сокращает пробег в среднем на 15-25%. Используйте алгоритмы VRP (Vehicle Routing Problem) и учитывайте временны́е окна доставки. Комбинированные маршруты снижают CO₂-выбросы на 20%.';
+    return 'Оптимизация маршрутов сокращает пробег на 15-25%. Используйте алгоритмы VRP с временны́ми окнами. Комбинированные маршруты снижают CO₂ на 20%.';
   if (q.includes('склад') || q.includes('запас'))
-    return 'Оптимальный уровень запасов = страховой запас + цикличный запас. Формула: SS = Z × σ_D × √LT. При DOI (Days of Inventory) > 45 дней — избыток; < 10 дней — риск stockout. ABC-анализ помогает правильно расставить приоритеты.';
-  if (q.includes('затрат') || q.includes('стоимост') || q.includes('цена'))
-    return 'Структура логистических затрат: транспорт — 40-60%, складирование — 20-30%, управление запасами — 15-25%, административные — 5-10%. Основной потенциал экономии — консолидация грузов и переход на мультимодальные схемы.';
-  if (q.includes('цифровиз') || q.includes('технолог') || q.includes('ai') || q.includes('ии'))
-    return 'Топ-технологии в supply chain: IoT-трекинг даёт видимость на 100%, TMS снижает транспортные расходы на 8-15%, WMS повышает точность склада до 99.9%, AI-прогнозирование спроса снижает запасы на 20-30%.';
-  return 'Я помогаю анализировать логистические цепочки. Спросите об OTD/OTIF, оптимизации маршрутов, управлении запасами, транспортных затратах или цифровизации supply chain.';
+    return 'Оптимальный страховой запас: SS = Z × σ_D × √LT. DOI > 45 дней — избыток; < 10 дней — риск stockout. ABC-анализ помогает расставить приоритеты управления.';
+  if (q.includes('затрат') || q.includes('стоимост'))
+    return 'Структура затрат: транспорт 40-60%, склад 20-30%, запасы 15-25%. Основная экономия — консолидация грузов и мультимодальные схемы доставки.';
+  return 'Я помогаю с анализом логистических цепочек. Спросите об OTD/OTIF, оптимизации маршрутов, управлении запасами или затратах supply chain.';
 }
 
-/* Route Optimizer ──────────────────────────────────────── */
+/* ── Route Optimizer ─────────────────────────────────────────── */
 function calcRoute(from, to, mode) {
   const dists = {
-    'Алматы': { 'Нур-Султан': 1100, 'Шымкент': 680, 'Ташкент': 940, 'Москва': 4200, 'Бишкек': 240 },
+    'Алматы':     { 'Нур-Султан': 1100, 'Шымкент': 680, 'Ташкент': 940, 'Москва': 4200, 'Бишкек': 240 },
     'Нур-Султан': { 'Алматы': 1100, 'Шымкент': 1600, 'Ташкент': 2000, 'Москва': 3500, 'Бишкек': 1300 },
-    'Шымкент': { 'Алматы': 680, 'Нур-Султан': 1600, 'Ташкент': 250, 'Москва': 4900, 'Бишкек': 900 },
+    'Шымкент':    { 'Алматы': 680, 'Нур-Султан': 1600, 'Ташкент': 250, 'Москва': 4900, 'Бишкек': 900 },
   };
-  const dist = dists[from]?.[to] || dists[to]?.[from] || Math.round(500 + Math.random() * 2500);
+  const dist  = dists[from]?.[to] || dists[to]?.[from] || Math.round(500 + Math.random() * 2500);
   const speeds = { auto: 70, rail: 55, air: 650, sea: 30 };
   const costs  = { auto: 45, rail: 28, air: 220, sea: 12 };
-  const speed  = speeds[mode] || 60;
-  const cost   = costs[mode] || 40;
-  const time   = (dist / speed).toFixed(1);
-  const price  = (dist * cost / 1000 * 1.2).toFixed(0);
-  const co2    = { auto: 95, rail: 22, air: 630, sea: 8 };
-  return { dist, time, price, co2: co2[mode] || 50 };
+  const co2m   = { auto: 95, rail: 22, air: 630, sea: 8 };
+  return {
+    dist,
+    time:  (dist / (speeds[mode] || 60)).toFixed(1),
+    price: (dist * (costs[mode] || 40) / 1000 * 1.2).toFixed(0),
+    co2:   co2m[mode] || 50,
+  };
 }

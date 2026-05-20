@@ -41,7 +41,7 @@
       <!-- CHATBOT -->
       <div>
         <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
-          <div style="width:40px;height:40px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 4px 16px rgba(0,200,255,0.3);">🤖</div>
+          <div style="width:40px;height:40px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:var(--shadow-blue);">🤖</div>
           <div>
             <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;">LogiBot — AI Ассистент</div>
             <div style="font-size:0.78rem;color:var(--text-dim);">Работает через Pollinations AI API · без регистрации</div>
@@ -94,7 +94,7 @@
             <span style="font-size:1.3rem;">🗺️</span>
             <div>
               <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1rem;">Оптимизатор маршрутов</div>
-              <div style="font-size:0.75rem;color:var(--text-muted);">Расчёт стоимости, времени и CO₂</div>
+              <div style="font-size:0.75rem;color:var(--text-3);">Расчёт стоимости, времени и CO₂</div>
             </div>
           </div>
 
@@ -134,7 +134,7 @@
 
           <div id="route-result" style="margin-top:1rem;display:none;">
             <div style="height:1px;background:var(--border);margin-bottom:1rem;"></div>
-            <div style="font-size:0.8rem;color:var(--cyan);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:0.75rem;">Результат расчёта</div>
+            <div style="font-size:0.8rem;color:var(--blue);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:0.75rem;">Результат расчёта</div>
             <div id="route-result-content"></div>
           </div>
         </div>
@@ -145,7 +145,7 @@
             <span style="font-size:1.3rem;">📈</span>
             <div>
               <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1rem;">Предиктивная аналитика</div>
-              <div style="font-size:0.75rem;color:var(--text-muted);">Прогноз показателей на следующий квартал</div>
+              <div style="font-size:0.75rem;color:var(--text-3);">Прогноз показателей на следующий квартал</div>
             </div>
           </div>
 
@@ -221,7 +221,7 @@
   </div>
 </footer>
 
-<button id="back-top" style="position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;border-radius:50%;background:var(--grad);border:none;color:white;font-size:1.1rem;cursor:pointer;z-index:999;opacity:0;pointer-events:none;transition:opacity 0.3s;box-shadow:0 4px 20px rgba(0,200,255,0.3);">↑</button>
+<button id="back-top" style="position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;border-radius:50%;background:var(--grad);border:none;color:white;font-size:1.1rem;cursor:pointer;z-index:999;opacity:0;pointer-events:none;transition:opacity 0.3s;box-shadow:var(--shadow-blue);">↑</button>
 
 <script src="main.js"></script>
 <script src="i18n.js"></script>
@@ -251,26 +251,26 @@ function calcRouteUI() {
 
   document.getElementById('route-result-content').innerHTML = `
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
-      <div style="background:rgba(0,200,255,0.07);border:1px solid var(--border);border-radius:10px;padding:0.9rem;text-align:center;">
-        <div style="font-size:1.5rem;font-family:'Space Grotesk',sans-serif;font-weight:700;color:white;">${r.dist.toLocaleString()}</div>
-        <div style="font-size:0.75rem;color:var(--text-muted);">км расстояние</div>
+      <div style="background:var(--blue-dim);border:1px solid var(--blue-mid);border-radius:10px;padding:0.9rem;text-align:center;">
+        <div style="font-size:1.5rem;font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--blue);">${r.dist.toLocaleString()}</div>
+        <div style="font-size:0.75rem;color:var(--text-3);">км расстояние</div>
       </div>
-      <div style="background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.2);border-radius:10px;padding:0.9rem;text-align:center;">
+      <div style="background:var(--green-dim);border:1px solid rgba(52,199,89,0.2);border-radius:10px;padding:0.9rem;text-align:center;">
         <div style="font-size:1.5rem;font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--green);">${r.time}</div>
-        <div style="font-size:0.75rem;color:var(--text-muted);">часов в пути</div>
+        <div style="font-size:0.75rem;color:var(--text-3);">часов в пути</div>
       </div>
-      <div style="background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.2);border-radius:10px;padding:0.9rem;text-align:center;">
+      <div style="background:var(--orange-dim);border:1px solid rgba(255,149,0,0.2);border-radius:10px;padding:0.9rem;text-align:center;">
         <div style="font-size:1.5rem;font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--orange);">$${Number(r.price).toLocaleString()}</div>
-        <div style="font-size:0.75rem;color:var(--text-muted);">стоимость перевозки</div>
+        <div style="font-size:0.75rem;color:var(--text-3);">стоимость перевозки</div>
       </div>
-      <div style="background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.2);border-radius:10px;padding:0.9rem;text-align:center;">
+      <div style="background:var(--red-dim);border:1px solid rgba(255,59,48,0.2);border-radius:10px;padding:0.9rem;text-align:center;">
         <div style="font-size:1.5rem;font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--red);">${r.co2}</div>
-        <div style="font-size:0.75rem;color:var(--text-muted);">гр CO₂/т·км</div>
+        <div style="font-size:0.75rem;color:var(--text-3);">гр CO₂/т·км</div>
       </div>
     </div>
-    <div style="margin-top:0.9rem;font-size:0.82rem;color:var(--text-dim);background:rgba(255,255,255,0.04);border-radius:8px;padding:0.75rem;">
+    <div style="margin-top:0.9rem;font-size:0.82rem;color:var(--text-2);background:var(--surface-alt);border:1px solid var(--border);border-radius:8px;padding:0.75rem;">
       📍 <strong style="color:var(--text);">${from} → ${to}</strong> · ${modeLabels[mode]}<br>
-      💡 <span style="color:var(--text-dim);">Рекомендация: при объёме > 20т и не срочной поставке — рассмотрите ж/д (экономия ~35%).</span>
+      💡 <span style="color:var(--text-3);">Рекомендация: при объёме > 20т и не срочной поставке — рассмотрите ж/д (экономия ~35%).</span>
     </div>`;
   document.getElementById('route-result').style.display = 'block';
 }
@@ -290,7 +290,7 @@ function generatePrediction() {
     ];
 
     document.getElementById('predict-content').innerHTML = `
-      <div style="font-size:0.8rem;color:var(--cyan);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:1rem;">Прогноз Q1 2026 · Confidence 84%</div>
+      <div style="font-size:0.8rem;color:var(--blue);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:1rem;">Прогноз Q1 2026 · Confidence 84%</div>
       ${metrics.map(m => `
         <div class="progress-row">
           <div class="progress-meta">
@@ -301,7 +301,7 @@ function generatePrediction() {
             <div class="progress-fill" data-w="${m.bar}%"></div>
           </div>
         </div>`).join('')}
-      <div style="margin-top:1rem;font-size:0.78rem;color:var(--text-muted);">
+      <div style="margin-top:1rem;font-size:0.78rem;color:var(--text-3);">
         🤖 Прогноз построен на основе данных за 12 месяцев с помощью ARIMA + ML-ансамбля
       </div>`;
 
