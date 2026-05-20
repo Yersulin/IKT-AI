@@ -16,6 +16,14 @@ function setActiveNav() {
   });
 }
 
+/* Video sound toggle ────────────────────────────────────────── */
+function toggleVideoSound(btn) {
+  const video = btn.closest('.video-wrap').querySelector('video');
+  if (!video) return;
+  video.muted = !video.muted;
+  btn.textContent = video.muted ? '🔇' : '🔊';
+}
+
 /* Reveal on scroll ──────────────────────────────────────────── */
 function initReveal() {
   const io = new IntersectionObserver(entries => {
