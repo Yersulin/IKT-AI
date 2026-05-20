@@ -508,6 +508,21 @@ footer {
 .delay-3 { animation-delay: 0.3s; }
 .delay-4 { animation-delay: 0.4s; }
 
+/* ─── LANG TOGGLE ────────────────────────────── */
+.lang-toggle {
+  display: flex; gap: 0; flex-shrink: 0;
+  border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+  margin-left: 0.5rem;
+}
+.lang-btn {
+  padding: 0.35rem 0.7rem; background: none; border: none;
+  color: var(--text-dim); font-size: 0.75rem; font-weight: 700;
+  cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif;
+  letter-spacing: 0.06em; line-height: 1;
+}
+.lang-btn:hover { color: var(--cyan); background: var(--cyan-dim); }
+.lang-btn.active { background: var(--grad); color: white; }
+
 /* ─── RESPONSIVE ─────────────────────────────── */
 @media (max-width: 1024px) {
   .grid-4 { grid-template-columns: repeat(2, 1fr); }

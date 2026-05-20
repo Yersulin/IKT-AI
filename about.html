@@ -239,26 +239,7 @@
     <!-- STAGES -->
     <div class="card">
       <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:600;margin-bottom:1.5rem;">🗓️ Этапы разработки проекта</h3>
-      <div style="display:flex;flex-direction:column;gap:0;">
-        ${[
-          ['1', '2026-01', 'Анализ требований и выбор темы', 'Изучение темы 16, исследование рынка логистических платформ, формирование структуры сайта', 'ok'],
-          ['2', '2026-02', 'Проектирование дизайна', 'Разработка цветовой схемы, wireframe страниц, выбор типографики и UI-компонентов', 'ok'],
-          ['3', '2026-03', 'Сбор и подготовка данных', 'Сбор статистики по логистике РК/ЦА, форматирование таблиц, подготовка датасета', 'ok'],
-          ['4', '2026-04', 'Frontend-разработка', 'Реализация 5 страниц (HTML/CSS/JS), интеграция Chart.js, адаптивная вёрстка', 'ok'],
-          ['5', '2026-05', 'Интеграция AI-компонентов', 'Настройка Pollinations AI API, разработка чат-бота LogiBot, оптимизатора маршрутов', 'ok'],
-          ['6', '2026-05', 'Тестирование и деплой', 'Кросс-браузерное тестирование, публикация в GitHub, финальная отладка', 'ok'],
-        ].map(([n, date, title, desc, status]) => `
-          <div style="display:flex;gap:1.25rem;padding:1.1rem 0;border-bottom:1px solid rgba(255,255,255,0.05);">
-            <div style="width:32px;height:32px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;flex-shrink:0;color:white;">${n}</div>
-            <div style="flex:1;">
-              <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;margin-bottom:0.2rem;">
-                <span style="font-family:'Space Grotesk',sans-serif;font-size:0.9rem;font-weight:600;">${title}</span>
-                <span class="badge badge-ok" style="font-size:0.68rem;">${date}</span>
-              </div>
-              <p style="font-size:0.82rem;color:var(--text-dim);">${desc}</p>
-            </div>
-          </div>`).join('')}
-      </div>
+      <div id="stages-list" style="display:flex;flex-direction:column;gap:0;"></div>
     </div>
 
   </section>
@@ -277,7 +258,7 @@
     </div>
     <hr class="footer-hr">
     <div class="footer-info">
-      <strong>Автор:</strong> Ерсулин (заполните ФИО) &nbsp;·&nbsp;
+      <strong>Автор:</strong> Саттакулов Ислам Шайх-Хасанулы &nbsp;·&nbsp;
       <strong>Дисциплина:</strong> ИКТ — Информационно-коммуникационные технологии<br>
       <strong>Учебное заведение:</strong> Университет Нархоз &nbsp;·&nbsp;
       <strong>Программа:</strong> Школа цифровых технологий &nbsp;·&nbsp;
@@ -289,5 +270,6 @@
 <button id="back-top" style="position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;border-radius:50%;background:var(--grad);border:none;color:white;font-size:1.1rem;cursor:pointer;z-index:999;opacity:0;pointer-events:none;transition:opacity 0.3s;box-shadow:0 4px 20px rgba(0,200,255,0.3);">↑</button>
 
 <script src="main.js"></script>
+<script src="i18n.js"></script>
 </body>
 </html>
